@@ -1,3 +1,13 @@
 {
-  "extends": "@tsconfig/react-native/tsconfig.json"
+  "extends": "@tsconfig/react-native/tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@navigation/*": ["src/navigation/*"],
+      "@navigation": ["src/navigation/index"],
+      "@theme/*": ["src/theme/*"],
+      "@theme": ["src/theme/index"],
+      "@screens/*": ["src/screens/*"]
+    }
+  }
 }

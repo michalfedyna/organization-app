@@ -7,6 +7,8 @@ This is organization app written in [**React Native**](https://reactnative.dev).
 * [Features](#features)
 * [Project Structure](#project-structure)
 * [Used Libraries](#used-libraries)
+  * [Frontend](#frontend)
+  * [Testing](#testing)
 * [Contributions](#contributions)
   * [Commits](#commits)
     * [Commit Message Structure](#commit-message-structure)
@@ -20,7 +22,20 @@ WIP
 # Project Structure
 WIP
 # Used Libraries
-WIP
+
+## Frontend
+
+- [**React Navigation**](https://reactnavigation.org/)
+- [**Redux**](https://redux.js.org/) with [**Redux Toolkit**](https://redux-toolkit.js.org/)
+- [**Styled Components**](https://styled-components.com/)
+
+## Testing
+
+- [**Jest**](https://jestjs.io/)
+- [**React Native Testing Library**](https://callstack.github.io/react-native-testing-library/)
+- [**Reassure**](https://callstack.github.io/reassure/)
+- [**Detox**](https://wix.github.io/Detox/)
+
 # Contributions
 
 ## Commits
