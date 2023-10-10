@@ -1,4 +1,4 @@
-This is organization app written in [**React Native**](https://reactnative.dev).
+This is organization app written in [**React Native**](https://reactnative.dev) with [**Typescript**](https://www.typescriptlang.org/)
 
 # Table of Contents
 
@@ -18,7 +18,12 @@ This is organization app written in [**React Native**](https://reactnative.dev).
 <!-- TOC -->
 
 # Features
-WIP
+
+- GitHub Actions integration for CI/CD
+- Unit and integration testing using [**Jest**](https://jestjs.io/) and [**React Native Testing Library**](https://callstack.github.io/react-native-testing-library/)
+- E2E testing using [**Detox**](https://wix.github.io/Detox/) with CI/CD support for [**Codemagic**](https://codemagic.io/)
+- Performance regression testing using [**Reassure**](https://callstack.github.io/reassure/)
+
 # Project Structure
 WIP
 # Used Libraries

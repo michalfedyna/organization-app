@@ -4,10 +4,13 @@
     "baseUrl": "./src/",
     "paths": {
       "@components/*": ["components/*"],
+      "@developer/*": ["developer/*"],
       "@navigation/*": ["navigation/*"],
       "@theme/*": ["theme/*"],
       "@screens/*": ["screens/*"],
-      "@store/*": ["store/*"]
+      "@store/*": ["store/*"],
+      "@utils/*": ["utils/*"],
+      "@hooks/*": ["utils/hooks/*"]
     }
   }
 }

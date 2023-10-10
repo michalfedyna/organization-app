@@ -1,0 +1,17 @@
+workflows:
+  ios-e2e-workflow:
+    name: iOS E2E Workflow
+    max_build_duration: 10
+    instance_type: mac_mini_m1
+    triggering:
+      events:
+        - push
+        - pull_request
+    scripts:
+      - name: Install dependencies
+        script: npm install:all
+      - name: Run build
+        script: npm run test:e2e:build:ios:release
+      - name: Run e2e tests
+        script: npm run test:e2e:ios:release
+

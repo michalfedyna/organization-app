@@ -34,6 +34,7 @@ module.exports = function (api) {
           alias: getAliases(),
         },
       ],
+      'react-native-reanimated/plugin',
     ],
   };
 };

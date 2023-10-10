@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoginScreen renders correctly 1`] = `
+<View
+  style={
+    {
+      "flexDirection": "column",
+    }
+  }
+/>
+`;
