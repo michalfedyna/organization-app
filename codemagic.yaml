@@ -8,6 +8,11 @@ workflows:
         - push
         - pull_request
     scripts:
+      - name: Install tools
+        script: |
+          brew tap wix/brew
+          brew install applesimutils
+          npm install -g detox-cli
       - name: Install dependencies
         script: npm run install:all
       - name: Run build
