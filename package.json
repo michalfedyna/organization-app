@@ -13,6 +13,8 @@
     "test:perf:baseline": "reassure --baseline",
     "ci:stability": "reassure check-stability",
     "ci:danger": "danger ci",
+    "ci:lint": "eslint .",
+    "ci:tsc": "tsc --noEmit",
     "staged": "lint-staged",
     "install:all": "npm install;cd ios;bundle install;bundle exec pod install",
     "clean:all": "watchman watch-del-all;rm -rf yarn.lock package-lock.json node_modules android/app/build ios/Pods ios/Podfile.lock ~/Library/Developer/Xcode/DerivedData",

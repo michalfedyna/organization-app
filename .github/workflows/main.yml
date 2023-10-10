@@ -1,4 +1,4 @@
-name: Test Performance Regression
+name: Main Workflow
 
 on:
   push:
@@ -7,7 +7,25 @@ on:
     branches: ['**']
 
 jobs:
-  tests:
+  lint:
+    name: Run linters
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.4.0
+
+      - name: Run Eslint
+        run: npm run ci:lint
+
+      - name: Run Typescript check
+        run: npm run ci:tsc
+
+  performance-tests:
     name: Run performance regression tests
     runs-on: ubuntu-latest
     steps:
@@ -32,3 +50,4 @@ jobs:
         with:
           name: performance-regression
           path: ./.reassure/output.md
+
