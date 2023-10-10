@@ -9,7 +9,7 @@ workflows:
         - pull_request
     scripts:
       - name: Install dependencies
-        script: npm install:all
+        script: npm run install:all
       - name: Run build
         script: npm run test:e2e:build:ios:release
       - name: Run e2e tests
