@@ -1,0 +1,22 @@
+name: Test Performance Stability
+
+on: [workflow_dispatch]
+
+jobs:
+  test:
+    name: Install and test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.4.0
+
+      - name: Install and build
+        run: yarn install --force
+
+      - name: Run stability checks
+        run: npm run ci:stability

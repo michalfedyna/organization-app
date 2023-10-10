@@ -1,4 +1,4 @@
-name: Main
+name: Test performance regression
 
 on:
   push:
@@ -11,8 +11,13 @@ jobs:
     name: Run app tests
     runs-on: ubuntu-latest
     steps:
-      - name: Check out the repository to the runner
+      - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.4.0
 
       - name: Run performance testing script
         run: ./reassure-tests.sh
