@@ -1,4 +1,4 @@
-name: Test performance regression
+name: Test Performance Regression
 
 on:
   push:
