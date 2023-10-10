@@ -26,3 +26,9 @@ jobs:
         run: npm run ci:danger
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Archive performance regression tests
+        uses: actions/upload-artifact@v3
+        with:
+          name: performance-regression.md
+          path: ./.reassure/output.md
