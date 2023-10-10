@@ -19,6 +19,9 @@ jobs:
         with:
           node-version: 20.4.0
 
+      - name: Install modules
+        run: npm install
+
       - name: Run Eslint
         run: npm run ci:lint
 
