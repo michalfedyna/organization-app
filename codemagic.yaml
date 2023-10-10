@@ -1,6 +1,6 @@
 workflows:
   ios-e2e-workflow:
-    name: iOS e2e Workflow
+    name: iOS E2E Workflow
     max_build_duration: 10
     instance_type: mac_mini_m1
     triggering:

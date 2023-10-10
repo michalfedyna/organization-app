@@ -10,6 +10,6 @@ describe('Example', () => {
   });
 
   it('should run and take screenshot', async () => {
-    await device.takeScreenshot('screenshot.png');
+    await device.takeScreenshot('screenshot');
   });
 });
