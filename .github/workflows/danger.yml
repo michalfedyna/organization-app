@@ -8,7 +8,7 @@ on:
 
 jobs:
   tests:
-    name: Run app tests
+    name: Run performance regression tests
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
