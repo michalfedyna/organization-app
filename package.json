@@ -11,6 +11,7 @@
     "test": "jest",
     "test:perf": "reassure",
     "test:perf:baseline": "reassure --baseline",
+    "ci:test": "jest --ci",
     "ci:stability": "reassure check-stability",
     "ci:danger": "danger ci",
     "ci:lint": "eslint .",

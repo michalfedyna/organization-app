@@ -28,6 +28,24 @@ jobs:
       - name: Run Typescript check
         run: npm run ci:tsc
 
+  tests:
+    name: Run tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.4.0
+
+      - name: Install modules
+        run: npm install
+
+      - name: Run tests
+        run: npm run ci:test
+
   performance-tests:
     name: Run performance regression tests
     runs-on: ubuntu-latest
