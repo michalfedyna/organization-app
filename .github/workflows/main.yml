@@ -8,7 +8,7 @@ on:
 
 jobs:
   lint:
-    name: Run linters
+    name: Lint
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -29,7 +29,7 @@ jobs:
         run: npm run ci:tsc
 
   tests:
-    name: Run tests
+    name: Test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -47,7 +47,7 @@ jobs:
         run: npm run ci:test
 
   performance-tests:
-    name: Run performance regression tests
+    name: Performance regression
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
