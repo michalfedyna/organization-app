@@ -7,6 +7,7 @@
     "android": "react-native run-android --no-packager",
     "ios:simulator": "react-native run-ios --no-packager --simulator \"iPhone 14 Pro\"",
     "lint": "eslint . --fix",
+    "lint:tsc": "tsc-files --noEmit",
     "format": "prettier --write",
     "test": "jest",
     "test:perf": "reassure",
@@ -58,6 +59,7 @@
     "prettier": "^2.4.1",
     "react-test-renderer": "^18.2.0",
     "reassure": "^0.9.1",
+    "tsc-files": "^1.1.4",
     "typescript": "4.8.4"
   },
   "engines": {
@@ -66,6 +68,7 @@
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "npm run lint",
+      "npm run lint:tsc",
       "npm run format"
     ]
   }
