@@ -9,7 +9,7 @@ describe('Example', () => {
     await device.reloadReactNative();
   });
 
-  it('should run', async () => {
-    return;
+  it('should run and take screenshot', async () => {
+    await device.takeScreenshot('screenshot.png');
   });
 });
