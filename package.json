@@ -9,7 +9,7 @@
     "lint": "eslint . --fix",
     "lint:tsc": "bash -c tsc-files --noEmit",
     "format": "prettier --write",
-    "test": "jest",
+    "test": "jest --verbose",
     "test:update": "jest --updateSnapshot",
     "test:perf": "reassure",
     "test:perf:baseline": "reassure --baseline",
