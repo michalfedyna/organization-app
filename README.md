@@ -1,5 +1,7 @@
-This is organization app written in [**React Native**](https://reactnative.dev) with [**Typescript**](https://www.typescriptlang.org/)
+[![Codemagic build status](https://api.codemagic.io/apps/6525d1962d51d83f1421600e/ios-e2e-workflow/status_badge.svg)](https://codemagic.io/apps/6525d1962d51d83f1421600e/ios-e2e-workflow/latest_build)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+This is organization app written in [**React Native**](https://reactnative.dev) with [**Typescript**](https://www.typescriptlang.org/)
 # Table of Contents
 
 <!-- TOC -->
