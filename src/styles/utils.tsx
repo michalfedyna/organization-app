@@ -1,6 +1,7 @@
 import {Appearance, StyleSheet} from 'react-native';
 import {useTheme} from './provider';
 import {Theme} from './theme';
+import {useMemo} from 'react';
 import NamedStyles = StyleSheet.NamedStyles;
 
 export type StylesFunction<T> = (theme: Theme) => T | NamedStyles<T>;
@@ -9,7 +10,13 @@ export function useStyles<T extends NamedStyles<T> | NamedStyles<any>>(
   styles: StylesFunction<T>,
 ): T {
   const theme = useTheme();
-  return StyleSheet.create(styles(theme));
+  return useMemo(() => StyleSheet.create(styles(theme)), [styles, theme]);
+}
+
+export function createStyles<T extends NamedStyles<T> | NamedStyles<any>>(
+  styles: T | NamedStyles<T>,
+): T {
+  return StyleSheet.create(styles);
 }
 
 export const setTheme = (theme: 'dark' | 'light' | null) => {
