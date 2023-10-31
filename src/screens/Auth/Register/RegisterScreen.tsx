@@ -1,8 +1,8 @@
 import React from 'react';
-import Layout from '@components/Layout';
+import {Container} from '@components/Layout';
 
 const RegisterScreen = () => {
-  return <Layout.Container />;
+  return <Container />;
 };
 
 export default RegisterScreen;

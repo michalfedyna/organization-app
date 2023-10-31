@@ -1,8 +1,8 @@
 import React from 'react';
-import Layout from '@components/Layout';
+import {Screen} from '@components/Layout';
 
 const ErrorFallbackScreen = () => {
-  return <Layout.Container />;
+  return <Screen />;
 };
 
 export default ErrorFallbackScreen;

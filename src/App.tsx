@@ -1,5 +1,6 @@
 import React from 'react';
 import {ErrorBoundary} from 'react-error-boundary';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
 
 import Providers from '@components/Providers';
 import Navigation from '@navigation/NavigationContainer';
@@ -19,11 +20,13 @@ const App = () => {
   const isDeveloperMode = useDeveloperMode();
 
   return (
-    <ErrorBoundary fallback={<ErrorFallbackScreen />}>
+    <GestureHandlerRootView>
       <Providers>
-        {isDeveloperMode ? <DeveloperNavigation /> : <Navigation />}
+        <ErrorBoundary fallback={<ErrorFallbackScreen />}>
+          {isDeveloperMode ? <DeveloperNavigation /> : <Navigation />}
+        </ErrorBoundary>
       </Providers>
-    </ErrorBoundary>
+    </GestureHandlerRootView>
   );
 };
 

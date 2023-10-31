@@ -3,10 +3,11 @@
   "compilerOptions": {
     "baseUrl": "./src/",
     "paths": {
+      "@svg": ["assets/svg/index"],
       "@components/*": ["components/*"],
       "@developer/*": ["developer/*"],
       "@navigation/*": ["navigation/*"],
-      "@theme/*": ["theme/*"],
+      "@styles/*": ["styles/*"],
       "@screens/*": ["screens/*"],
       "@store/*": ["store/*"],
       "@utils/*": ["utils/*"],
