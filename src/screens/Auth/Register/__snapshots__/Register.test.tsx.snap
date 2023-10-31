@@ -4,7 +4,8 @@ exports[`RegisterScreen renders correctly 1`] = `
 <View
   style={
     {
-      "flexDirection": "column",
+      "backgroundColor": "#fff",
+      "flex": 1,
     }
   }
 />
