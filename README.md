@@ -34,7 +34,6 @@ WIP
 
 - [**React Navigation**](https://reactnavigation.org/)
 - [**Redux**](https://redux.js.org/) with [**Redux Toolkit**](https://redux-toolkit.js.org/)
-- [**Styled Components**](https://styled-components.com/)
 
 ## Testing
 

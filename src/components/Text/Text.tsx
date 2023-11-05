@@ -3,26 +3,19 @@ import {Text as RNText} from 'react-native';
 
 import {
   useStyles,
-  FontWeight,
-  FontSize,
-  Spacing,
-  SpacingDirection,
-  getSpacing,
+  getMargin,
+  getPadding,
+  FontProps,
+  SpacingProps,
+  getAlign,
 } from '@styles';
 import {useTranslation} from '@i18n';
-
-type SpacingProps = {
-  spacing?: keyof Spacing;
-  spacingDirection?: SpacingDirection;
-  spacingType?: 'margin' | 'padding';
-};
 
 type TextProps = PropsWithChildren<
   {
     withTranslation?: string;
-    fontSize?: FontSize;
-    fontWeight?: FontWeight;
-  } & SpacingProps
+  } & FontProps &
+    SpacingProps
 >;
 
 const Text: FC<TextProps> = ({
@@ -30,16 +23,22 @@ const Text: FC<TextProps> = ({
   withTranslation,
   fontSize,
   fontWeight,
-  spacing = 'none',
-  spacingDirection,
-  spacingType = 'margin',
+  fontColor = 'text',
+  margin = 'none',
+  marginDirection,
+  padding = 'none',
+  paddingDirection,
+  align = 'center',
 }) => {
   const translation = useTranslation();
   const styles = useStyles(theme => ({
     text: {
-      ...getSpacing(spacingType, theme.spacing[spacing], spacingDirection),
+      ...getMargin(theme.spacing[margin], marginDirection),
+      ...getPadding(theme.spacing[padding], paddingDirection),
+      ...getAlign(align),
       fontSize: fontSize ? theme.font.size[fontSize] : undefined,
       fontWeight: fontWeight ? theme.font.weight[fontWeight] : undefined,
+      color: theme.colors[fontColor],
     },
   }));
 

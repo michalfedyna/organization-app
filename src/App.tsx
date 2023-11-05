@@ -21,3 +21,7 @@ const App = () => {
 };
 
 export default App;
+
+// TODO yup for validation in forms
+// TODO row and column components
+// TODO alignItems fix

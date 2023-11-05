@@ -2,12 +2,14 @@ import React from 'react';
 import {Provider as StoreProvider} from 'react-redux';
 
 import {ThemeProvider} from '@styles';
-import {TranslationProvider} from '@i18n/provider';
-import {store} from '@store/store';
+import {TranslationProvider} from '@i18n';
+import {store} from '@store';
 
 type ProvidersProps = React.PropsWithChildren & {};
 
-const Providers: React.FunctionComponent<ProvidersProps> = ({children}) => {
+const ContextProviders: React.FunctionComponent<ProvidersProps> = ({
+  children,
+}) => {
   return (
     <StoreProvider store={store}>
       <ThemeProvider>
@@ -17,4 +19,4 @@ const Providers: React.FunctionComponent<ProvidersProps> = ({children}) => {
   );
 };
 
-export default Providers;
+export default ContextProviders;

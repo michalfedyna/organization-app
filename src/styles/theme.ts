@@ -1,5 +1,3 @@
-import {DimensionValue} from 'react-native';
-
 type Weight =
   | '100'
   | '200'
@@ -36,20 +34,22 @@ export type Spacing = {
   large: number;
 };
 
+export type Colors = {
+  text: string;
+  textInverted: string;
+  background: string;
+  foreground: string;
+  primary: string;
+  secondary: string;
+  accent: string;
+  border: string;
+};
+
 export type Theme = {
   isDark: boolean;
   font: Font;
   spacing: Spacing;
-  colors: {
-    text: string;
-    textInverted: string;
-    background: string;
-    foreground: string;
-    primary: string;
-    secondary: string;
-    accent: string;
-    border: string;
-  };
+  colors: Colors;
 };
 
 export type FontSize = keyof Theme['font']['size'];
@@ -68,9 +68,9 @@ const font: Font = {
   family: 'Poppins',
   size: {
     small: 14,
-    medium: 16,
-    large: 18,
-    jumbo: 24,
+    medium: 18,
+    large: 24,
+    jumbo: 32,
   },
   weight: {
     light: '300',
@@ -84,10 +84,10 @@ const spacing: Spacing = {
   none: 0,
   small: 8,
   medium: 16,
-  large: 24,
+  large: 32,
 };
 
-const darkColors = {
+const darkColors: Colors = {
   text: '#fff',
   textInverted: '#000',
   background: '#000',
@@ -98,7 +98,7 @@ const darkColors = {
   border: '#e5e5e5',
 };
 
-const lightColors = {
+const lightColors: Colors = {
   text: '#000',
   textInverted: '#fff',
   background: '#fff',

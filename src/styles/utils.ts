@@ -1,9 +1,16 @@
 import {useMemo} from 'react';
-import {Appearance, DimensionValue, StyleSheet} from 'react-native';
+import {Appearance, FlexStyle, StyleSheet} from 'react-native';
 import NamedStyles = StyleSheet.NamedStyles;
 
 import {useTheme} from './provider';
-import {SpacingDirection, Theme} from './theme';
+import {
+  Colors,
+  FontSize,
+  FontWeight,
+  Spacing,
+  SpacingDirection,
+  Theme,
+} from './theme';
 
 export type StylesFunction<T> = (theme: Theme) => T | NamedStyles<T>;
 
@@ -39,42 +46,93 @@ export const useNavigationTheme = () => {
   };
 };
 
-export const getSpacing = (
-  property: 'padding' | 'margin',
-  spacing: number | undefined,
-  spacingDirection?: SpacingDirection,
-): any => {
-  if (!spacing) return {};
-  switch (spacingDirection) {
+export type SpacingProps = {
+  margin?: keyof Spacing;
+  marginDirection?: SpacingDirection;
+  padding?: keyof Spacing;
+  paddingDirection?: SpacingDirection;
+  align?: 'center' | 'start' | 'end';
+};
+
+export type FontProps = {
+  fontSize?: FontSize;
+  fontWeight?: FontWeight;
+  fontColor?: keyof Colors;
+};
+
+export const getPadding = (
+  padding: number | undefined,
+  paddingDirection?: SpacingDirection,
+): Pick<
+  FlexStyle,
+  | 'padding'
+  | 'paddingHorizontal'
+  | 'paddingVertical'
+  | 'paddingTop'
+  | 'paddingBottom'
+  | 'paddingLeft'
+  | 'paddingRight'
+> => {
+  if (!padding) return {};
+  switch (paddingDirection) {
     case 'horizontal':
-      return {
-        [`${property}Left`]: spacing,
-        [`${property}Right`]: spacing,
-      };
-    case 'left':
-      return {
-        [`${property}Left`]: spacing,
-      };
-    case 'right':
-      return {
-        [`${property}Right`]: spacing,
-      };
+      return {paddingHorizontal: padding};
     case 'vertical':
-      return {
-        [`${property}Top`]: spacing,
-        [`${property}Bottom`]: spacing,
-      };
+      return {paddingVertical: padding};
     case 'top':
-      return {
-        [`${property}Top`]: spacing,
-      };
+      return {paddingTop: padding};
     case 'bottom':
-      return {
-        [`${property}Bottom`]: spacing,
-      };
+      return {paddingBottom: padding};
+    case 'left':
+      return {paddingLeft: padding};
+    case 'right':
+      return {paddingRight: padding};
     default:
-      return {
-        [property]: spacing,
-      };
+      return {padding: padding};
+  }
+};
+
+export const getMargin = (
+  margin: number | undefined,
+  marginDirection?: SpacingDirection,
+): Pick<
+  FlexStyle,
+  | 'margin'
+  | 'marginHorizontal'
+  | 'marginVertical'
+  | 'marginTop'
+  | 'marginBottom'
+  | 'marginLeft'
+  | 'marginRight'
+> => {
+  if (!margin) return {};
+  switch (marginDirection) {
+    case 'horizontal':
+      return {marginHorizontal: margin};
+    case 'vertical':
+      return {marginVertical: margin};
+    case 'top':
+      return {marginTop: margin};
+    case 'bottom':
+      return {marginBottom: margin};
+    case 'left':
+      return {marginLeft: margin};
+    case 'right':
+      return {marginRight: margin};
+    default:
+      return {margin: margin};
+  }
+};
+
+export const getAlign = (
+  align: 'center' | 'start' | 'end',
+): Pick<FlexStyle, 'alignSelf'> => {
+  switch (align) {
+    case 'start':
+      return {alignSelf: 'flex-start'};
+    case 'end':
+      return {alignSelf: 'flex-end'};
+    default:
+      return {alignSelf: align};
   }
 };
