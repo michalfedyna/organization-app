@@ -7,7 +7,7 @@ import Providers from '@components/Providers';
 
 import {createStyles} from '@styles/utils';
 
-type RootProps = PropsWithChildren<{}>;
+type AppRootProps = PropsWithChildren<{}>;
 
 const styles = createStyles({
   root: {
@@ -15,7 +15,7 @@ const styles = createStyles({
   },
 });
 
-const Root: FC<RootProps> = ({children}) => {
+const AppRoot: FC<AppRootProps> = ({children}) => {
   return (
     <GestureHandlerRootView style={styles.root}>
       <Providers>
@@ -27,4 +27,4 @@ const Root: FC<RootProps> = ({children}) => {
   );
 };
 
-export default Root;
+export default AppRoot;

@@ -1,8 +1,8 @@
 import React from 'react';
-import {Container} from '@components/Layout';
+import {Screen} from '@components';
 
 const LoginScreen = () => {
-  return <Container />;
+  return <Screen />;
 };
 
 export default LoginScreen;

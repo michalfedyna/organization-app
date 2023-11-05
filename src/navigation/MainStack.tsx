@@ -1,10 +1,20 @@
 import React from 'react';
-import {createDrawerNavigator} from '@react-navigation/drawer';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-const Drawer = createDrawerNavigator();
+import {HomeScreen} from '@screens';
+
+type MainStackParamList = {
+  Home: undefined;
+};
+
+const Tab = createBottomTabNavigator<MainStackParamList>();
 
 const MainStack = () => {
-  return <Drawer.Navigator>{/* ... */}</Drawer.Navigator>;
+  return (
+    <Tab.Navigator initialRouteName="Home">
+      <Tab.Screen name="Home" component={HomeScreen} />
+    </Tab.Navigator>
+  );
 };
 
 export default MainStack;

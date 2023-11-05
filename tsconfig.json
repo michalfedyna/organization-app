@@ -5,12 +5,20 @@
     "paths": {
       "@svg": ["assets/svg/index"],
       "@components/*": ["components/*"],
+      "@components": ["components/index"],
       "@developer/*": ["developer/*"],
+      "@developer": ["developer/index"],
+      "@i18n/*": ["i18n/*"],
+      "@i18n": ["i18n/index"],
       "@navigation/*": ["navigation/*"],
+      "@navigation": ["navigation/index"],
       "@styles/*": ["styles/*"],
+      "@styles": ["styles/index"],
       "@screens/*": ["screens/*"],
+      "@screens": ["screens/index"],
       "@store/*": ["store/*"],
       "@utils/*": ["utils/*"],
+      "@utils": ["utils/index"],
       "@hooks/*": ["utils/hooks/*"]
     }
   }

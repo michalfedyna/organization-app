@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container} from '@components/Layout';
+import {Container} from '@components';
 
 const RegisterScreen = () => {
   return <Container />;

@@ -1,5 +1,6 @@
 import React, {FC, PropsWithChildren} from 'react';
 import {View} from 'react-native';
+
 import {useStyles} from '@styles/utils';
 
 type ScreenProps = PropsWithChildren<{}>;

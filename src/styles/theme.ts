@@ -1,25 +1,45 @@
-export type Theme = {
-  isDark: boolean;
-  font: {
-    family: string;
-    size: {
-      small: number;
-      medium: number;
-      large: number;
-      jumbo: number;
-    };
-    weight: {
-      light: number;
-      regular: number;
-      medium: number;
-      bold: number;
-    };
-  };
-  spacing: {
+import {DimensionValue} from 'react-native';
+
+type Weight =
+  | '100'
+  | '200'
+  | '300'
+  | '400'
+  | '500'
+  | '600'
+  | '700'
+  | '800'
+  | '900'
+  | 'bold'
+  | 'normal';
+
+type Font = {
+  family: string;
+  size: {
     small: number;
     medium: number;
     large: number;
+    jumbo: number;
   };
+  weight: {
+    light: Weight;
+    regular: Weight;
+    medium: Weight;
+    bold: Weight;
+  };
+};
+
+export type Spacing = {
+  none: number;
+  small: number;
+  medium: number;
+  large: number;
+};
+
+export type Theme = {
+  isDark: boolean;
+  font: Font;
+  spacing: Spacing;
   colors: {
     text: string;
     textInverted: string;
@@ -32,7 +52,19 @@ export type Theme = {
   };
 };
 
-const font = {
+export type FontSize = keyof Theme['font']['size'];
+
+export type FontWeight = keyof Theme['font']['weight'];
+
+export type SpacingDirection =
+  | 'horizontal'
+  | 'left'
+  | 'right'
+  | 'vertical'
+  | 'top'
+  | 'bottom';
+
+const font: Font = {
   family: 'Poppins',
   size: {
     small: 14,
@@ -41,14 +73,15 @@ const font = {
     jumbo: 24,
   },
   weight: {
-    light: 300,
-    regular: 400,
-    medium: 500,
-    bold: 700,
+    light: '300',
+    regular: '400',
+    medium: '500',
+    bold: '700',
   },
 };
 
-const spacing = {
+const spacing: Spacing = {
+  none: 0,
   small: 8,
   medium: 16,
   large: 24,

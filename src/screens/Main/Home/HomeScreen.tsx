@@ -1,8 +1,8 @@
 import React from 'react';
 import {Container} from '@components';
 
-const ThemeScreen = () => {
+const HomeScreen = () => {
   return <Container />;
 };
 
-export default ThemeScreen;
+export default HomeScreen;

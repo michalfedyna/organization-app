@@ -1,11 +1,10 @@
 import React from 'react';
 
-import Root from './Root';
-import Navigation from '@navigation/NavigationContainer';
-import DeveloperNavigation from '@developer/DeveloperNavigationContainer';
-import useDeveloperMode from '@developer/useDeveloperMode';
+import AppRoot from './AppRoot';
+import {Navigation} from '@navigation';
+import {DeveloperNavigation, useDeveloperMode} from '@developer';
 
-import Logger from '@utils/Logger';
+import {Logger} from '@utils';
 
 if (__DEV__) {
   Logger.getLogger().enable();
@@ -15,7 +14,9 @@ const App = () => {
   const isDeveloperMode = useDeveloperMode();
 
   return (
-    <Root>{isDeveloperMode ? <DeveloperNavigation /> : <Navigation />}</Root>
+    <AppRoot>
+      {isDeveloperMode ? <DeveloperNavigation /> : <Navigation />}
+    </AppRoot>
   );
 };
 

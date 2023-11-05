@@ -1,8 +1,13 @@
 import React from 'react';
-import {Screen} from '@components/Layout';
+
+import {Screen, Text} from '@components';
 
 const WelcomeScreen = () => {
-  return <Screen />;
+  return (
+    <Screen>
+      <Text withTranslation="authScreen.title" spacing="large" />
+    </Screen>
+  );
 };
 
 export default WelcomeScreen;

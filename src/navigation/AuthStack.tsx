@@ -1,30 +1,35 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import WelcomeScreen from '@screens/Auth/Welcome/WelcomeScreen';
-import LoginScreen from '@screens/Auth/Login/LoginScreen';
-import RegisterScreen from '@screens/Auth/Register/RegisterScreen';
 
-const Stack = createNativeStackNavigator();
+import {WelcomeScreen, LoginScreen, RegisterScreen} from '@screens';
+
+type AuthStackParamList = {
+  Welcome: undefined;
+  Login: undefined;
+  Register: undefined;
+};
+
+const Stack = createNativeStackNavigator<AuthStackParamList>();
 
 const AuthStack = () => {
   return (
-    <Stack.Navigator initialRouteName="auth/welcome">
+    <Stack.Navigator initialRouteName="Welcome">
       <Stack.Screen
-        name="auth/welcome"
+        name="Welcome"
         component={WelcomeScreen}
         options={{
           title: 'Welcome',
         }}
       />
       <Stack.Screen
-        name="auth/login"
+        name="Login"
         component={LoginScreen}
         options={{
           title: 'Login',
         }}
       />
       <Stack.Screen
-        name="auth/register"
+        name="Register"
         component={RegisterScreen}
         options={{
           title: 'Register',
