@@ -1,9 +1,11 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import AuthStack from '@navigation/AuthStack';
-import MainStack from '@navigation/MainStack';
-import {useNavigationTheme} from '@styles/utils';
-import {useAppSelector} from '@store/hooks';
+
+import {useNavigationTheme} from '@styles';
+import {useAppSelector} from '@store';
+
+import AuthStack from './AuthStack';
+import MainStack from './MainStack';
 
 type NavigationProps = {};
 
