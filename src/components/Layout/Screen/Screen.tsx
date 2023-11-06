@@ -1,12 +1,13 @@
-import React, {FC, PropsWithChildren} from 'react';
-import {View} from 'react-native';
+import React from 'react';
+import {View as RNView} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
+import {FunctionComponentWithChildren} from '@types';
 import {useStyles} from '@styles';
 
-type ScreenProps = PropsWithChildren<{}>;
+type ScreenProps = {};
 
-const Screen: FC<ScreenProps> = ({children}) => {
+const Screen: FunctionComponentWithChildren<ScreenProps> = ({children}) => {
   const {top, bottom, left, right} = useSafeAreaInsets();
   const styles = useStyles(theme => ({
     container: {
@@ -19,7 +20,7 @@ const Screen: FC<ScreenProps> = ({children}) => {
     },
   }));
 
-  return <View style={styles.container}>{children}</View>;
+  return <RNView style={styles.container}>{children}</RNView>;
 };
 
 export default Screen;

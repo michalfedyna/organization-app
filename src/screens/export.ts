@@ -5,3 +5,5 @@ export {default as RegisterScreen} from './Auth/Register/RegisterScreen';
 export {default as ErrorFallbackScreen} from './ErrorFallback/ErrorFallbackScreen';
 
 export {default as HomeScreen} from './Main/Home/HomeScreen';
+
+export {default as ToolsScreen} from './Main/Tools/ToolsScreen';

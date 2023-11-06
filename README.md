@@ -8,9 +8,8 @@ Awesome **Organization App** created using [**React Native**](https://reactnativ
 * [Table of Contents](#table-of-contents)
 * [Features](#features)
 * [Project Structure](#project-structure)
-* [Used Libraries](#used-libraries)
-  * [Frontend](#frontend)
-  * [Testing](#testing)
+* [Libraries](#libraries)
+* [Testing](#testing)
 * [Contributions](#contributions)
   * [Commits](#commits)
     * [Commit Message Structure](#commit-message-structure)
@@ -21,21 +20,20 @@ Awesome **Organization App** created using [**React Native**](https://reactnativ
 
 # Features
 
-- GitHub Actions integration for CI/CD
+- GitHub Actions and [**Codemagic**](https://codemagic.io/) integrations for CI/CD
 - Unit and integration testing using [**Jest**](https://jestjs.io/) and [**React Native Testing Library**](https://callstack.github.io/react-native-testing-library/)
-- E2E testing using [**Detox**](https://wix.github.io/Detox/) with CI/CD support for [**Codemagic**](https://codemagic.io/)
+- E2E testing using [**Detox**](https://wix.github.io/Detox/)
 - Performance regression testing using [**Reassure**](https://callstack.github.io/reassure/)
 
 # Project Structure
 WIP
-# Used Libraries
 
-## Frontend
+# Libraries
 
 - [**React Navigation**](https://reactnavigation.org/)
 - [**Redux**](https://redux.js.org/) with [**Redux Toolkit**](https://redux-toolkit.js.org/)
 
-## Testing
+# Testing
 
 - [**Jest**](https://jestjs.io/)
 - [**React Native Testing Library**](https://callstack.github.io/react-native-testing-library/)

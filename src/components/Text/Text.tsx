@@ -1,44 +1,29 @@
-import React, {FC, PropsWithChildren} from 'react';
+import React from 'react';
 import {Text as RNText} from 'react-native';
 
-import {
-  useStyles,
-  getMargin,
-  getPadding,
+import type {
+  FunctionComponentWithChildren,
+  TranslationProps,
   FontProps,
   SpacingProps,
-  getAlign,
-} from '@styles';
+  AlignProps,
+} from '@types';
+import {useStyles, getSpacing, getAlign, getFont} from '@styles';
 import {useTranslation} from '@i18n';
 
-type TextProps = PropsWithChildren<
-  {
-    withTranslation?: string;
-  } & FontProps &
-    SpacingProps
->;
+type TextProps = TranslationProps & FontProps & SpacingProps & AlignProps;
 
-const Text: FC<TextProps> = ({
+const Text: FunctionComponentWithChildren<TextProps> = ({
   children,
   withTranslation,
-  fontSize,
-  fontWeight,
-  fontColor = 'text',
-  margin = 'none',
-  marginDirection,
-  padding = 'none',
-  paddingDirection,
-  align = 'center',
+  ...props
 }) => {
   const translation = useTranslation();
   const styles = useStyles(theme => ({
     text: {
-      ...getMargin(theme.spacing[margin], marginDirection),
-      ...getPadding(theme.spacing[padding], paddingDirection),
-      ...getAlign(align),
-      fontSize: fontSize ? theme.font.size[fontSize] : undefined,
-      fontWeight: fontWeight ? theme.font.weight[fontWeight] : undefined,
-      color: theme.colors[fontColor],
+      ...getAlign(props),
+      ...getSpacing(props, theme.spacing),
+      ...getFont(props, theme.font, theme.colors),
     },
   }));
 

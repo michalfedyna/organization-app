@@ -3,15 +3,39 @@
   "compilerOptions": {
     "baseUrl": "./src/",
     "paths": {
-      "@svg": ["assets/svg/index"],
-      "@components": ["components/index"],
-      "@developer": ["developer/index"],
-      "@i18n": ["i18n/index"],
-      "@navigation": ["navigation/index"],
-      "@styles": ["styles/index"],
-      "@screens": ["screens/index"],
-      "@store": ["store/index"],
-      "@utils": ["utils/index"],
+      "@svg": [
+        "assets/svg/export"
+      ],
+      "@components": [
+        "components/export"
+      ],
+      "@data": [
+        "data/export"
+      ],
+      "@developer": [
+        "developer/export"
+      ],
+      "@i18n": [
+        "i18n/export"
+      ],
+      "@navigation": [
+        "navigation/export"
+      ],
+      "@styles": [
+        "styles/export"
+      ],
+      "@screens": [
+        "screens/export"
+      ],
+      "@store": [
+        "store/export"
+      ],
+      "@utils": [
+        "utils/export"
+      ],
+      "@types": [
+        "types/export"
+      ]
     }
   }
 }

@@ -1,124 +1,55 @@
-type Weight =
-  | '100'
-  | '200'
-  | '300'
-  | '400'
-  | '500'
-  | '600'
-  | '700'
-  | '800'
-  | '900'
-  | 'bold'
-  | 'normal';
+import {Theme} from '@styles';
 
-type Font = {
-  family: string;
-  size: {
-    small: number;
-    medium: number;
-    large: number;
-    jumbo: number;
-  };
-  weight: {
-    light: Weight;
-    regular: Weight;
-    medium: Weight;
-    bold: Weight;
-  };
-};
-
-export type Spacing = {
-  none: number;
-  small: number;
-  medium: number;
-  large: number;
-};
-
-export type Colors = {
-  text: string;
-  textInverted: string;
-  background: string;
-  foreground: string;
-  primary: string;
-  secondary: string;
-  accent: string;
-  border: string;
-};
-
-export type Theme = {
-  isDark: boolean;
-  font: Font;
-  spacing: Spacing;
-  colors: Colors;
-};
-
-export type FontSize = keyof Theme['font']['size'];
-
-export type FontWeight = keyof Theme['font']['weight'];
-
-export type SpacingDirection =
-  | 'horizontal'
-  | 'left'
-  | 'right'
-  | 'vertical'
-  | 'top'
-  | 'bottom';
-
-const font: Font = {
-  family: 'Poppins',
-  size: {
-    small: 14,
-    medium: 18,
-    large: 24,
-    jumbo: 32,
+const baseTheme: Omit<Theme, 'colors' | 'isDark'> = {
+  font: {
+    family: 'Poppins',
+    size: {
+      small: 14,
+      medium: 18,
+      large: 24,
+      jumbo: 32,
+    },
+    weight: {
+      light: '300',
+      regular: '400',
+      medium: '500',
+      bold: '700',
+    },
   },
-  weight: {
-    light: '300',
-    regular: '400',
-    medium: '500',
-    bold: '700',
+  spacing: {
+    none: 0,
+    small: 8,
+    medium: 16,
+    large: 32,
   },
-};
-
-const spacing: Spacing = {
-  none: 0,
-  small: 8,
-  medium: 16,
-  large: 32,
-};
-
-const darkColors: Colors = {
-  text: '#fff',
-  textInverted: '#000',
-  background: '#000',
-  foreground: '#222222',
-  primary: '#007aff',
-  secondary: '#242833',
-  accent: '#888FA0',
-  border: '#e5e5e5',
-};
-
-const lightColors: Colors = {
-  text: '#000',
-  textInverted: '#fff',
-  background: '#fff',
-  foreground: '#eeeeee',
-  primary: '#007aff',
-  secondary: '#CCD0DB',
-  accent: '#5F6677',
-  border: '#e5e5e5',
 };
 
 export const darkTheme: Theme = {
+  ...baseTheme,
   isDark: true,
-  font,
-  spacing,
-  colors: darkColors,
+  colors: {
+    text: '#fff',
+    textInverted: '#000',
+    background: '#000',
+    foreground: '#222222',
+    primary: '#007aff',
+    secondary: '#242833',
+    accent: '#888FA0',
+    border: '#e5e5e5',
+  },
 };
 
 export const lightTheme: Theme = {
+  ...baseTheme,
   isDark: false,
-  font,
-  spacing,
-  colors: lightColors,
+  colors: {
+    text: '#000',
+    textInverted: '#fff',
+    background: '#fff',
+    foreground: '#eeeeee',
+    primary: '#007aff',
+    secondary: '#CCD0DB',
+    accent: '#5F6677',
+    border: '#e5e5e5',
+  },
 };

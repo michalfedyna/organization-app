@@ -1,59 +1,62 @@
-import React, {FC, PropsWithChildren} from 'react';
-import {TouchableOpacity} from 'react-native';
+import React from 'react';
 
-import {
-  useStyles,
-  Colors,
+import type {
+  FunctionComponentWithChildren,
   FontProps,
   SpacingProps,
-  getMargin,
-  getAlign,
-} from '@styles';
-import {Container, Text} from '@components';
+  TranslationProps,
+  AlignProps,
+  BackgroundProps,
+} from '@types';
+import {useStyles, getAlign, getFont, getMargin, getBackground} from '@styles';
+import {Container, Text, Touchable} from '@components';
 
-type ButtonProps = PropsWithChildren<
-  {
-    color?: keyof Colors;
-    onClick?: () => void;
+type ButtonProps = FontProps &
+  SpacingProps &
+  AlignProps &
+  BackgroundProps &
+  TranslationProps & {
+    onPress?: () => void;
     isDisabled?: boolean;
-    withTranslation?: string;
-  } & FontProps &
-    SpacingProps
->;
+  };
 
-const Button: FC<ButtonProps> = ({
+const Button: FunctionComponentWithChildren<ButtonProps> = ({
   children,
+  onPress,
   isDisabled,
-  color = 'accent',
   withTranslation,
-  onClick,
-  fontColor = 'textInverted',
-  fontSize,
-  fontWeight,
-  margin = 'none',
-  marginDirection,
-  padding = 'medium',
-  paddingDirection,
-  align = 'center',
+  ...props
 }) => {
+  const {fontColor, fontSize, fontWeight} = props;
+  const {
+    padding,
+    paddingHorizontal,
+    paddingVertical,
+    paddingTop,
+    paddingBottom,
+    paddingLeft,
+    paddingRight,
+  } = props;
+
   const styles = useStyles(theme => ({
     button: {
-      ...getMargin(theme.spacing[margin], marginDirection),
-      ...getAlign(align),
-      borderRadius: 10,
-      overflow: 'hidden',
+      ...getMargin(props, theme.spacing),
+      ...getAlign(props),
+      ...getFont(props, theme.font, theme.colors),
+      ...getBackground(props, theme.colors),
     },
   }));
 
   return (
-    <TouchableOpacity
-      disabled={isDisabled}
-      style={styles.button}
-      onPress={onClick}>
+    <Touchable style={styles.button} isDisabled={isDisabled} onPress={onPress}>
       <Container
-        color={color}
         padding={padding}
-        paddingDirection={paddingDirection}>
+        paddingHorizontal={paddingHorizontal}
+        paddingVertical={paddingVertical}
+        paddingTop={paddingTop}
+        paddingBottom={paddingBottom}
+        paddingLeft={paddingLeft}
+        paddingRight={paddingRight}>
         <Text
           withTranslation={withTranslation}
           fontColor={fontColor}
@@ -62,7 +65,7 @@ const Button: FC<ButtonProps> = ({
           {children}
         </Text>
       </Container>
-    </TouchableOpacity>
+    </Touchable>
   );
 };
 

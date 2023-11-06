@@ -1,35 +1,44 @@
-import React, {FC, PropsWithChildren} from 'react';
+import React from 'react';
 import {View as RNView} from 'react-native';
+
+import type {
+  FunctionComponentWithChildren,
+  SpacingProps,
+  AlignProps,
+  BackgroundProps,
+  SizeProps,
+  ViewProps,
+  BorderProps,
+} from '@types';
 import {
   useStyles,
-  Colors,
-  SpacingProps,
-  getMargin,
-  getPadding,
+  getSpacing,
   getAlign,
+  getBackground,
+  getSize,
+  getView,
+  getBorder,
 } from '@styles';
 
-type ContainerProps = PropsWithChildren<
-  {
-    color?: keyof Colors;
-  } & SpacingProps
->;
+type ContainerProps = SpacingProps &
+  AlignProps &
+  BackgroundProps &
+  ViewProps &
+  SizeProps &
+  BorderProps & {};
 
-const Container: FC<ContainerProps> = ({
+const Container: FunctionComponentWithChildren<ContainerProps> = ({
   children,
-  color = 'background',
-  margin = 'none',
-  marginDirection,
-  padding = 'none',
-  paddingDirection,
-  align = 'center',
+  ...props
 }) => {
   const styles = useStyles(theme => ({
     container: {
-      ...getMargin(theme.spacing[margin], marginDirection),
-      ...getPadding(theme.spacing[padding], paddingDirection),
-      ...getAlign(align),
-      backgroundColor: theme.colors[color],
+      ...getSpacing(props, theme.spacing),
+      ...getAlign(props),
+      ...getBackground(props, theme.colors),
+      ...getView(props),
+      ...getSize(props),
+      ...getBorder(props, theme.colors),
     },
   }));
 

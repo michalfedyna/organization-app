@@ -1,7 +1,8 @@
 import React, {createContext, useContext, useEffect, useReducer} from 'react';
 import {Appearance} from 'react-native';
 
-import {darkTheme, lightTheme, Theme} from './theme';
+import {darkTheme, lightTheme} from './theme';
+import type {Theme} from './types';
 
 const ThemeContext = createContext<Theme>(lightTheme);
 

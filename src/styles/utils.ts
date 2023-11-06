@@ -1,16 +1,35 @@
 import {useMemo} from 'react';
-import {Appearance, FlexStyle, StyleSheet} from 'react-native';
+import {Appearance, StyleSheet} from 'react-native';
 import NamedStyles = StyleSheet.NamedStyles;
+
+import type {
+  AlignProps,
+  BackgroundProps,
+  BorderProps,
+  FontProps,
+  MarginProps,
+  PaddingProps,
+  SizeProps,
+  SpacingProps,
+  ViewProps,
+} from '@types';
 
 import {useTheme} from './provider';
 import {
-  Colors,
-  FontSize,
-  FontWeight,
-  Spacing,
-  SpacingDirection,
+  SpacingTheme,
   Theme,
-} from './theme';
+  SpacingStyle,
+  MarginStyle,
+  PaddingStyle,
+  AlignStyle,
+  FontTheme,
+  FontStyle,
+  ColorTheme,
+  ViewStyle,
+  BackgroundStyle,
+  SizeStyle,
+  BorderStyle,
+} from './types';
 
 export type StylesFunction<T> = (theme: Theme) => T | NamedStyles<T>;
 
@@ -46,93 +65,218 @@ export const useNavigationTheme = () => {
   };
 };
 
-export type SpacingProps = {
-  margin?: keyof Spacing;
-  marginDirection?: SpacingDirection;
-  padding?: keyof Spacing;
-  paddingDirection?: SpacingDirection;
-  align?: 'center' | 'start' | 'end';
-};
+// Style utils
 
-export type FontProps = {
-  fontSize?: FontSize;
-  fontWeight?: FontWeight;
-  fontColor?: keyof Colors;
-};
+const marginProperties: (keyof MarginStyle)[] = [
+  'margin',
+  'marginHorizontal',
+  'marginVertical',
+  'marginTop',
+  'marginBottom',
+  'marginLeft',
+  'marginRight',
+];
 
-export const getPadding = (
-  padding: number | undefined,
-  paddingDirection?: SpacingDirection,
-): Pick<
-  FlexStyle,
-  | 'padding'
-  | 'paddingHorizontal'
-  | 'paddingVertical'
-  | 'paddingTop'
-  | 'paddingBottom'
-  | 'paddingLeft'
-  | 'paddingRight'
-> => {
-  if (!padding) return {};
-  switch (paddingDirection) {
-    case 'horizontal':
-      return {paddingHorizontal: padding};
-    case 'vertical':
-      return {paddingVertical: padding};
-    case 'top':
-      return {paddingTop: padding};
-    case 'bottom':
-      return {paddingBottom: padding};
-    case 'left':
-      return {paddingLeft: padding};
-    case 'right':
-      return {paddingRight: padding};
-    default:
-      return {padding: padding};
+const paddingProperties: (keyof PaddingStyle)[] = [
+  'padding',
+  'paddingHorizontal',
+  'paddingVertical',
+  'paddingTop',
+  'paddingBottom',
+  'paddingLeft',
+  'paddingRight',
+];
+
+const spacingProperties: (keyof SpacingStyle)[] = [
+  ...marginProperties,
+  ...paddingProperties,
+];
+
+export const getSpacing = (
+  args: SpacingProps,
+  spacingTheme: SpacingTheme,
+): SpacingStyle => {
+  let spacing: SpacingStyle = {};
+
+  for (const property of spacingProperties) {
+    const arg = args[property];
+    if (arg !== undefined) {
+      spacing[property] = spacingTheme[arg];
+    }
   }
+  return spacing;
 };
 
 export const getMargin = (
-  margin: number | undefined,
-  marginDirection?: SpacingDirection,
-): Pick<
-  FlexStyle,
-  | 'margin'
-  | 'marginHorizontal'
-  | 'marginVertical'
-  | 'marginTop'
-  | 'marginBottom'
-  | 'marginLeft'
-  | 'marginRight'
-> => {
-  if (!margin) return {};
-  switch (marginDirection) {
-    case 'horizontal':
-      return {marginHorizontal: margin};
-    case 'vertical':
-      return {marginVertical: margin};
-    case 'top':
-      return {marginTop: margin};
-    case 'bottom':
-      return {marginBottom: margin};
-    case 'left':
-      return {marginLeft: margin};
-    case 'right':
-      return {marginRight: margin};
-    default:
-      return {margin: margin};
+  args: MarginProps,
+  spacingTheme: SpacingTheme,
+): MarginStyle => {
+  let margin: MarginStyle = {};
+
+  for (const property of marginProperties) {
+    const arg = args[property];
+    if (arg !== undefined) {
+      margin[property] = spacingTheme[arg];
+    }
   }
+  return margin;
 };
 
-export const getAlign = (
-  align: 'center' | 'start' | 'end',
-): Pick<FlexStyle, 'alignSelf'> => {
-  switch (align) {
+export const getPadding = (
+  args: PaddingProps,
+  spacingTheme: SpacingTheme,
+): PaddingStyle => {
+  let padding: PaddingStyle = {};
+
+  for (const property of paddingProperties) {
+    const arg = args[property];
+    if (arg !== undefined) {
+      padding[property] = spacingTheme[arg];
+    }
+  }
+  return padding;
+};
+
+export const getAlign = (args: AlignProps): AlignStyle => {
+  switch (args.align) {
     case 'start':
       return {alignSelf: 'flex-start'};
     case 'end':
       return {alignSelf: 'flex-end'};
     default:
-      return {alignSelf: align};
+      return {alignSelf: 'center'};
   }
+};
+
+export const getView = (args: ViewProps): ViewStyle => {
+  let view: ViewStyle = {};
+
+  if (args.flex !== undefined && args.flex !== false) {
+    if (args.flex === true) view.flex = 1;
+    else view.flex = args.flex;
+  }
+
+  if (args.direction) view.flexDirection = args.direction;
+
+  if (args.wrap) view.flexWrap = args.wrap;
+
+  if (args.justify) {
+    switch (args.justify) {
+      case 'start':
+        view.justifyContent = 'flex-start';
+        break;
+      case 'end':
+        view.justifyContent = 'flex-end';
+        break;
+      case 'space-between':
+        view.justifyContent = 'space-between';
+        break;
+      case 'space-around':
+        view.justifyContent = 'space-around';
+        break;
+      case 'space-evenly':
+        view.justifyContent = 'space-evenly';
+        break;
+      default:
+        view.justifyContent = 'center';
+        break;
+    }
+  }
+
+  if (args.overflow) view.overflow = args.overflow;
+
+  return view;
+};
+
+export const getFont = (
+  args: FontProps,
+  fontTheme: FontTheme,
+  colorTheme: ColorTheme,
+): FontStyle => {
+  let font: FontStyle = {
+    fontFamily: fontTheme.family,
+    fontSize: fontTheme.size.medium,
+  };
+
+  if (args.fontSize) {
+    font.fontSize = fontTheme.size[args.fontSize];
+  }
+
+  if (args.fontWeight) {
+    font.fontWeight = fontTheme.weight[args.fontWeight];
+  }
+
+  if (args.fontColor) {
+    font.color = colorTheme[args.fontColor];
+  }
+
+  return font;
+};
+
+export const getBackground = (
+  args: BackgroundProps,
+  colorTheme: ColorTheme,
+): BackgroundStyle => {
+  let background: BackgroundStyle = {};
+
+  if (
+    args.backgroundColor !== undefined &&
+    colorTheme[args.backgroundColor] !== undefined
+  ) {
+    background.backgroundColor = colorTheme[args.backgroundColor];
+  }
+  return background;
+};
+
+export const getSize = (args: SizeProps): SizeStyle => {
+  let size: SizeStyle = {};
+
+  if (args.width) size.width = args.width;
+  if (args.minWidth) size.minWidth = args.minWidth;
+  if (args.maxWidth) size.maxWidth = args.maxWidth;
+  if (args.height) size.height = args.height;
+  if (args.minHeight) size.minHeight = args.minHeight;
+  if (args.maxHeight) size.maxHeight = args.maxHeight;
+
+  return size;
+};
+
+export const getBorder = (
+  args: BorderProps,
+  colorTheme: ColorTheme,
+): BorderStyle => {
+  let border: BorderStyle = {};
+
+  if (
+    args.borderColor !== undefined &&
+    colorTheme[args.borderColor] !== undefined
+  ) {
+    border.borderColor = colorTheme[args.borderColor];
+  }
+
+  if (args.borderWidth !== undefined) {
+    border.borderWidth = args.borderWidth;
+  }
+
+  if (args.borderTopWidth !== undefined) {
+    border.borderTopWidth = args.borderTopWidth;
+  }
+
+  if (args.borderRightWidth !== undefined) {
+    border.borderRightWidth = args.borderRightWidth;
+  }
+
+  if (args.borderBottomWidth !== undefined) {
+    border.borderBottomWidth = args.borderBottomWidth;
+  }
+
+  if (args.borderLeftWidth !== undefined) {
+    border.borderLeftWidth = args.borderLeftWidth;
+  }
+
+  if (args.borderRadius !== undefined) {
+    border.borderRadius = args.borderRadius;
+  }
+
+  return border;
 };

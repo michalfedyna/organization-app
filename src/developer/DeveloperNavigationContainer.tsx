@@ -4,23 +4,12 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 
 import DesignScreen from './DesignScreen';
 import ThemeScreen from './ThemeScreen';
-import {useTheme} from '@styles/utils';
+import {useNavigationTheme} from '@styles';
 
 const Drawer = createDrawerNavigator();
 
 const Navigation = () => {
-  const {isDark, ...theme} = useTheme();
-  const navigationTheme = {
-    dark: isDark,
-    colors: {
-      primary: theme.colors.primary,
-      background: theme.colors.background,
-      card: theme.colors.foreground,
-      text: theme.colors.text,
-      border: theme.colors.background,
-      notification: theme.colors.accent,
-    },
-  };
+  const navigationTheme = useNavigationTheme();
 
   return (
     <NavigationContainer theme={navigationTheme}>

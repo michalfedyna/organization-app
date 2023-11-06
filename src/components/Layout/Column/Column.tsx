@@ -1,32 +1,23 @@
-import React, {FC, PropsWithChildren} from 'react';
+import React from 'react';
 import {View as RNView} from 'react-native';
-import {useStyles, Colors, SpacingProps, getMargin, getPadding} from '@styles';
+import {useStyles, getSpacing, getView} from '@styles';
+import {FunctionComponentWithChildren, SpacingProps, ViewProps} from '@types';
 
-type ContainerProps = PropsWithChildren<
-  {
-    color?: keyof Colors;
-  } & SpacingProps
->;
+type ColumnProps = SpacingProps & ViewProps;
 
-const Column: FC<ContainerProps> = ({
+const Column: FunctionComponentWithChildren<ColumnProps> = ({
   children,
-  color = 'background',
-  margin = 'none',
-  marginDirection,
-  padding = 'none',
-  paddingDirection,
+  ...props
 }) => {
   const styles = useStyles(theme => ({
-    container: {
-      ...getMargin(theme.spacing[margin], marginDirection),
-      ...getPadding(theme.spacing[padding], paddingDirection),
-      backgroundColor: theme.colors[color],
+    column: {
+      ...getSpacing(props, theme.spacing),
+      ...getView(props),
       flexDirection: 'column',
-      flex: 1,
     },
   }));
 
-  return <RNView style={styles.container}>{children}</RNView>;
+  return <RNView style={styles.column}>{children}</RNView>;
 };
 
 export default Column;

@@ -1,24 +1,14 @@
 import React from 'react';
 
-import {Row, Button, Screen, Text, Column} from '@components';
+import {Row, Button, Screen, Text, Column, Container} from '@components';
 
 const WelcomeScreen = () => {
   return (
     <Screen>
-      <Column color="foreground" padding="large" paddingDirection="horizontal">
-        <Text
-          withTranslation="authScreen.title"
-          fontSize="jumbo"
-          fontWeight="bold"
-          align="start"
-        />
-        <Button
-          align="end"
-          withTranslation="authScreen.title"
-          onClick={() => {}}
-        />
-        <Button withTranslation="authScreen.title" onClick={() => {}} />
-      </Column>
+      <Text fontSize="jumbo" margin="small" marginBottom="large">
+        Hello
+      </Text>
+      <Text>World</Text>
     </Screen>
   );
 };
