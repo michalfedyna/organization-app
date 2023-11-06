@@ -47,6 +47,27 @@ export type ColorTheme = {
   border: string;
 };
 
+// TODO change colors structure
+
+export type BackgroundColorTheme = {
+  background: string;
+  foreground: string;
+};
+
+export type TextColorTheme = {
+  onLightBackground: string;
+  onDarkBackground: string;
+};
+
+export type AccentColorTheme = {
+  attention: string; // call to action
+  toned: string; // grey
+  success: string; // green
+  warning: string; // yellow
+  error: string; // red
+  info: string; // blue
+};
+
 export type Theme = {
   isDark: boolean;
   font: FontTheme;

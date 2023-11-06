@@ -1,4 +1,6 @@
 import type {FC, PropsWithChildren} from 'react';
+import {StyleProp, ViewProps as RNViewProps} from 'react-native';
+
 import {
   KeyofColorTheme,
   KeyofFontSizeTheme,
@@ -9,6 +11,8 @@ import {
 export type FunctionComponent<T = {}> = FC<T>;
 
 export type FunctionComponentWithChildren<T = {}> = FC<PropsWithChildren<T>>;
+
+export type SVGComponent = FunctionComponent<SVGProps>;
 
 export type MarginProps = {
   margin?: KeyofSpacingTheme;
@@ -81,4 +85,9 @@ export type BackgroundProps = {
 
 export type TranslationProps = {
   withTranslation?: string;
+};
+
+export type SVGProps = {
+  size: number;
+  color: string;
 };

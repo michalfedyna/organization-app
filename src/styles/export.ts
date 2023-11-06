@@ -12,9 +12,10 @@ export {
   getBackground,
   getSize,
   getBorder,
+  getIconProps,
 } from './utils';
 
-export {ThemeProvider} from './provider';
+export {ThemeProvider, useTheme} from './provider';
 
 export type {
   KeyofFontSizeTheme,

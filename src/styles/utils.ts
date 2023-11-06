@@ -29,6 +29,8 @@ import {
   BackgroundStyle,
   SizeStyle,
   BorderStyle,
+  KeyofColorTheme,
+  KeyofFontSizeTheme,
 } from './types';
 
 export type StylesFunction<T> = (theme: Theme) => T | NamedStyles<T>;
@@ -279,4 +281,15 @@ export const getBorder = (
   }
 
   return border;
+};
+
+export const getIconProps = (
+  args: {color?: KeyofColorTheme; size?: KeyofFontSizeTheme},
+  colors: ColorTheme,
+  font: FontTheme,
+): {color: string; size: number} => {
+  return {
+    color: colors[args.color || 'text'],
+    size: font.size[args.size || 'medium'],
+  };
 };

@@ -1,6 +1,7 @@
 export type {
   FunctionComponent,
   FunctionComponentWithChildren,
+  SVGComponent,
   MarginProps,
   PaddingProps,
   SpacingProps,
@@ -11,4 +12,5 @@ export type {
   TranslationProps,
   SizeProps,
   BorderProps,
+  SVGProps,
 } from './types';
