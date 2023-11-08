@@ -1,5 +1,8 @@
 import React from 'react';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {
+  createNativeStackNavigator,
+  NativeStackNavigationProp,
+} from '@react-navigation/native-stack';
 
 import {WelcomeScreen, LoginScreen, RegisterScreen} from '@screens';
 
@@ -10,6 +13,21 @@ type AuthStackParamList = {
 };
 
 const Stack = createNativeStackNavigator<AuthStackParamList>();
+
+export type WelcomeScreenRouteProp = NativeStackNavigationProp<
+  AuthStackParamList,
+  'Welcome'
+>;
+
+export type LoginScreenRouteProp = NativeStackNavigationProp<
+  AuthStackParamList,
+  'Login'
+>;
+
+export type RegisterScreenRouteProp = NativeStackNavigationProp<
+  AuthStackParamList,
+  'Register'
+>;
 
 const AuthStack = () => {
   return (

@@ -1,6 +1,7 @@
 import type {FC, PropsWithChildren} from 'react';
-import {StyleProp, ViewProps as RNViewProps} from 'react-native';
+import {TextStyle} from 'react-native';
 
+import {TranslationKey} from '@i18n';
 import {
   KeyofColorTheme,
   KeyofFontSizeTheme,
@@ -44,6 +45,7 @@ export type FontProps = {
   fontSize?: KeyofFontSizeTheme;
   fontWeight?: KeyofFontWeightTheme;
   fontColor?: KeyofColorTheme;
+  textAlign?: 'left' | 'right' | 'center' | 'justify';
 };
 
 export type ViewProps = {
@@ -58,6 +60,9 @@ export type ViewProps = {
     | 'space-around'
     | 'space-evenly';
   overflow?: 'visible' | 'hidden' | 'scroll';
+  gap?: KeyofSpacingTheme;
+  rowGap?: KeyofSpacingTheme;
+  columnGap?: KeyofSpacingTheme;
 };
 
 export type BorderProps = {
@@ -84,7 +89,7 @@ export type BackgroundProps = {
 };
 
 export type TranslationProps = {
-  withTranslation?: string;
+  withTranslation?: TranslationKey;
 };
 
 export type SVGProps = {

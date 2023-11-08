@@ -45,6 +45,9 @@ export type ColorTheme = {
   secondary: string;
   accent: string;
   border: string;
+  facebook: string;
+  google: string;
+  apple: string;
 };
 
 // TODO change colors structure
@@ -113,12 +116,24 @@ export type AlignStyle = Pick<FlexStyle, 'alignSelf'>;
 
 export type FontStyle = Pick<
   TextStyle,
-  'fontFamily' | 'fontSize' | 'fontWeight' | 'color'
+  | 'color'
+  | 'fontFamily'
+  | 'fontSize'
+  | 'fontWeight'
+  | 'lineHeight'
+  | 'textAlign'
 >;
 
 export type ViewStyle = Pick<
   FlexStyle,
-  'flex' | 'flexDirection' | 'flexWrap' | 'justifyContent' | 'overflow'
+  | 'columnGap'
+  | 'flex'
+  | 'flexDirection'
+  | 'flexWrap'
+  | 'gap'
+  | 'justifyContent'
+  | 'overflow'
+  | 'rowGap'
 >;
 
 export type BackgroundStyle = {backgroundColor?: string};

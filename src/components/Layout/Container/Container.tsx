@@ -1,24 +1,24 @@
 import React from 'react';
 import {View as RNView} from 'react-native';
 
-import type {
-  FunctionComponentWithChildren,
-  SpacingProps,
-  AlignProps,
-  BackgroundProps,
-  SizeProps,
-  ViewProps,
-  BorderProps,
-} from '@types';
 import {
-  useStyles,
-  getSpacing,
   getAlign,
   getBackground,
-  getSize,
-  getView,
   getBorder,
+  getSize,
+  getSpacing,
+  getView,
+  useStyles,
 } from '@styles';
+import type {
+  AlignProps,
+  BackgroundProps,
+  BorderProps,
+  FunctionComponentWithChildren,
+  SizeProps,
+  SpacingProps,
+  ViewProps,
+} from '@types';
 
 type ContainerProps = SpacingProps &
   AlignProps &
@@ -33,12 +33,12 @@ const Container: FunctionComponentWithChildren<ContainerProps> = ({
 }) => {
   const styles = useStyles(theme => ({
     container: {
-      ...getSpacing(props, theme.spacing),
       ...getAlign(props),
       ...getBackground(props, theme.colors),
-      ...getView(props),
-      ...getSize(props),
       ...getBorder(props, theme.colors),
+      ...getSize(props),
+      ...getSpacing(props, theme.spacing),
+      ...getView(props, theme.spacing),
     },
   }));
 

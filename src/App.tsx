@@ -1,9 +1,8 @@
+import AppRoot from './AppRoot';
 import React from 'react';
 
-import AppRoot from './AppRoot';
-import {Navigation} from '@navigation';
 import {DeveloperNavigation, useDeveloperMode} from '@developer';
-
+import {Navigation} from '@navigation';
 import {Logger} from '@utils';
 
 if (__DEV__) {

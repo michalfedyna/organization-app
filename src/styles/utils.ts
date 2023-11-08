@@ -1,6 +1,23 @@
+import {useTheme} from './provider';
+import {
+  AlignStyle,
+  BackgroundStyle,
+  BorderStyle,
+  ColorTheme,
+  FontStyle,
+  FontTheme,
+  KeyofColorTheme,
+  KeyofFontSizeTheme,
+  MarginStyle,
+  PaddingStyle,
+  SizeStyle,
+  SpacingStyle,
+  SpacingTheme,
+  Theme,
+  ViewStyle,
+} from './types';
 import {useMemo} from 'react';
-import {Appearance, StyleSheet} from 'react-native';
-import NamedStyles = StyleSheet.NamedStyles;
+import {Appearance, Platform, StyleSheet} from 'react-native';
 
 import type {
   AlignProps,
@@ -14,24 +31,7 @@ import type {
   ViewProps,
 } from '@types';
 
-import {useTheme} from './provider';
-import {
-  SpacingTheme,
-  Theme,
-  SpacingStyle,
-  MarginStyle,
-  PaddingStyle,
-  AlignStyle,
-  FontTheme,
-  FontStyle,
-  ColorTheme,
-  ViewStyle,
-  BackgroundStyle,
-  SizeStyle,
-  BorderStyle,
-  KeyofColorTheme,
-  KeyofFontSizeTheme,
-} from './types';
+import NamedStyles = StyleSheet.NamedStyles;
 
 export type StylesFunction<T> = (theme: Theme) => T | NamedStyles<T>;
 
@@ -150,7 +150,10 @@ export const getAlign = (args: AlignProps): AlignStyle => {
   }
 };
 
-export const getView = (args: ViewProps): ViewStyle => {
+export const getView = (
+  args: ViewProps,
+  spacingTheme: SpacingTheme,
+): ViewStyle => {
   let view: ViewStyle = {};
 
   if (args.flex !== undefined && args.flex !== false) {
@@ -187,6 +190,12 @@ export const getView = (args: ViewProps): ViewStyle => {
 
   if (args.overflow) view.overflow = args.overflow;
 
+  if (args.gap) view.gap = spacingTheme[args.gap];
+
+  if (args.rowGap) view.rowGap = spacingTheme[args.rowGap];
+
+  if (args.columnGap) view.columnGap = spacingTheme[args.columnGap];
+
   return view;
 };
 
@@ -196,9 +205,13 @@ export const getFont = (
   colorTheme: ColorTheme,
 ): FontStyle => {
   let font: FontStyle = {
-    fontFamily: fontTheme.family,
+    color: colorTheme.text,
+    fontFamily: Platform.OS === 'ios' ? fontTheme.family : 'Poppins-Regular',
     fontSize: fontTheme.size.medium,
+    fontWeight: fontTheme.weight.regular,
   };
+
+  if (args.textAlign) font.textAlign = args.textAlign;
 
   if (args.fontSize) {
     font.fontSize = fontTheme.size[args.fontSize];
@@ -206,6 +219,22 @@ export const getFont = (
 
   if (args.fontWeight) {
     font.fontWeight = fontTheme.weight[args.fontWeight];
+    if (Platform.OS === 'android') {
+      switch (args.fontWeight) {
+        case 'regular':
+          font.fontFamily = 'Poppins-Regular';
+          break;
+        case 'medium':
+          font.fontFamily = 'Poppins-Medium';
+          break;
+        case 'bold':
+          font.fontFamily = 'Poppins-Bold';
+          break;
+        case 'light':
+          font.fontFamily = 'Poppins-Light';
+          break;
+      }
+    }
   }
 
   if (args.fontColor) {

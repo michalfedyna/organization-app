@@ -1,13 +1,26 @@
 import React from 'react';
 import {View as RNView} from 'react-native';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
+import {TopBar} from '@components';
+import {KeyofColorTheme, useStyles} from '@styles';
 import {FunctionComponentWithChildren} from '@types';
-import {useStyles} from '@styles';
 
-type ScreenProps = {};
+type ScreenProps = {
+  goBack?: () => void;
+  topBarBackgroundColor?: KeyofColorTheme;
+  withInput?: boolean;
+  withTopBar?: boolean;
+};
 
-const Screen: FunctionComponentWithChildren<ScreenProps> = ({children}) => {
+const Screen: FunctionComponentWithChildren<ScreenProps> = ({
+  children,
+  goBack,
+  topBarBackgroundColor,
+  withInput,
+  withTopBar,
+}) => {
   const {top, bottom, left, right} = useSafeAreaInsets();
   const styles = useStyles(theme => ({
     container: {
@@ -18,9 +31,32 @@ const Screen: FunctionComponentWithChildren<ScreenProps> = ({children}) => {
       paddingLeft: left,
       paddingRight: right,
     },
+    contentContainer: {
+      flex: 1,
+    },
   }));
 
-  return <RNView style={styles.container}>{children}</RNView>;
+  if (withInput)
+    return (
+      <KeyboardAwareScrollView
+        enableOnAndroid
+        contentContainerStyle={styles.contentContainer}
+        style={styles.container}>
+        {withTopBar && (
+          <TopBar backgroundColor={topBarBackgroundColor} goBack={goBack} />
+        )}
+        {children}
+      </KeyboardAwareScrollView>
+    );
+
+  return (
+    <RNView style={styles.container}>
+      {withTopBar && (
+        <TopBar backgroundColor={topBarBackgroundColor} goBack={goBack} />
+      )}
+      {children}
+    </RNView>
+  );
 };
 
 export default Screen;

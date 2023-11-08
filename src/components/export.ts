@@ -8,5 +8,10 @@ export {default as Text} from './Text/Text';
 export {default as Button} from './Button/Button';
 export {default as Touchable} from './Touchable/Touchable';
 export {default as Icon} from './Icon/Icon';
+export {default as TopBar} from './TopBar/TopBar';
+export {default as Divider} from './Divider/Divider';
+
+export {default as Input} from './Form/Input/Input';
+export {default as Label} from './Form/Label/Label';
 
 export {default as ContextProviders} from './ContextProviders';

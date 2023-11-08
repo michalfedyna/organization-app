@@ -1,9 +1,15 @@
 import React from 'react';
 import {View as RNView} from 'react-native';
-import {useStyles, getSpacing, getView} from '@styles';
-import {FunctionComponentWithChildren, SpacingProps, ViewProps} from '@types';
 
-type ColumnProps = SpacingProps & ViewProps;
+import {getBackground, getSpacing, getView, useStyles} from '@styles';
+import {
+  BackgroundProps,
+  FunctionComponentWithChildren,
+  SpacingProps,
+  ViewProps,
+} from '@types';
+
+type ColumnProps = SpacingProps & ViewProps & BackgroundProps & {};
 
 const Column: FunctionComponentWithChildren<ColumnProps> = ({
   children,
@@ -11,8 +17,9 @@ const Column: FunctionComponentWithChildren<ColumnProps> = ({
 }) => {
   const styles = useStyles(theme => ({
     column: {
+      ...getBackground(props, theme.colors),
       ...getSpacing(props, theme.spacing),
-      ...getView(props),
+      ...getView(props, theme.spacing),
       flexDirection: 'column',
     },
   }));

@@ -2,7 +2,7 @@ import {Theme} from '@styles';
 
 const baseTheme: Omit<Theme, 'colors' | 'isDark'> = {
   font: {
-    family: 'Poppins',
+    family: 'Poppins_thin',
     size: {
       small: 14,
       medium: 18,
@@ -36,6 +36,9 @@ export const darkTheme: Theme = {
     secondary: '#242833',
     accent: '#888FA0',
     border: '#e5e5e5',
+    facebook: '#1877F2',
+    google: '#DB4437',
+    apple: '#888FA0',
   },
 };
 
@@ -51,5 +54,8 @@ export const lightTheme: Theme = {
     secondary: '#CCD0DB',
     accent: '#5F6677',
     border: '#e5e5e5',
+    facebook: '#1877F2',
+    google: '#DB4437',
+    apple: '#888FA0',
   },
 };

@@ -1,17 +1,22 @@
 import React from 'react';
 import {Text as RNText} from 'react-native';
 
-import type {
-  FunctionComponentWithChildren,
-  TranslationProps,
-  FontProps,
-  SpacingProps,
-  AlignProps,
-} from '@types';
-import {useStyles, getSpacing, getAlign, getFont} from '@styles';
 import {useTranslation} from '@i18n';
+import {getAlign, getFont, getSize, getSpacing, useStyles} from '@styles';
+import type {
+  AlignProps,
+  FontProps,
+  FunctionComponentWithChildren,
+  SizeProps,
+  SpacingProps,
+  TranslationProps,
+} from '@types';
 
-type TextProps = TranslationProps & FontProps & SpacingProps & AlignProps;
+type TextProps = TranslationProps &
+  FontProps &
+  SpacingProps &
+  AlignProps &
+  SizeProps & {};
 
 const Text: FunctionComponentWithChildren<TextProps> = ({
   children,
@@ -22,8 +27,10 @@ const Text: FunctionComponentWithChildren<TextProps> = ({
   const styles = useStyles(theme => ({
     text: {
       ...getAlign(props),
-      ...getSpacing(props, theme.spacing),
       ...getFont(props, theme.font, theme.colors),
+      ...getSize(props),
+      ...getSpacing(props, theme.spacing),
+      includeFontPadding: false,
     },
   }));
 
