@@ -1,9 +1,9 @@
-import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {createDrawerNavigator} from '@react-navigation/drawer';
-
 import DesignScreen from './DesignScreen';
 import ThemeScreen from './ThemeScreen';
+import React from 'react';
+
+import {createDrawerNavigator} from '@react-navigation/drawer';
+import {NavigationContainer} from '@react-navigation/native';
 import {useNavigationTheme} from '@styles';
 
 const Drawer = createDrawerNavigator();
@@ -15,15 +15,15 @@ const Navigation = () => {
     <NavigationContainer theme={navigationTheme}>
       <Drawer.Navigator>
         <Drawer.Screen
-          name="developer/design"
           component={DesignScreen}
+          name="developer/design"
           options={{
             title: 'Design',
           }}
         />
         <Drawer.Screen
-          name={'developer/theme'}
           component={ThemeScreen}
+          name={'developer/theme'}
           options={{title: 'Theme'}}
         />
       </Drawer.Navigator>

@@ -9,16 +9,19 @@ const translation = {
   },
   form: {
     label: {
+      username: 'Username',
       email: 'Email',
       password: 'Password',
       confirmPassword: 'Confirm Password',
     },
     errorLabel: {
+      username: 'Username is invalid, please use minimum 3 characters',
       email: 'Email is invalid',
       password: 'Password is invalid, please use minimum 8 characters',
       confirmPassword: 'Passwords do not match',
     },
     placeholder: {
+      username: 'Enter your username',
       email: 'Enter your email',
       password: 'Enter your password',
       confirmPassword: 'Confirm your password',

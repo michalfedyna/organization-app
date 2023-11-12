@@ -4,21 +4,21 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 import {TopBar} from '@components';
-import {KeyofColorTheme, useStyles} from '@styles';
+import {KeyofColorTheme, getSpacing, useStyles} from '@styles';
 import {FunctionComponentWithChildren} from '@types';
 
 type ScreenProps = {
   goBack?: () => void;
   topBarBackgroundColor?: KeyofColorTheme;
-  withInput?: boolean;
+  scrollable?: boolean;
   withTopBar?: boolean;
 };
 
 const Screen: FunctionComponentWithChildren<ScreenProps> = ({
   children,
   goBack,
+  scrollable,
   topBarBackgroundColor,
-  withInput,
   withTopBar,
 }) => {
   const {top, bottom, left, right} = useSafeAreaInsets();
@@ -31,30 +31,36 @@ const Screen: FunctionComponentWithChildren<ScreenProps> = ({
       paddingLeft: left,
       paddingRight: right,
     },
+    viewContainer: {
+      flex: 1,
+      ...getSpacing({paddingHorizontal: 'medium'}, theme.spacing),
+    },
     contentContainer: {
       flex: 1,
     },
   }));
 
-  if (withInput)
-    return (
-      <KeyboardAwareScrollView
-        enableOnAndroid
-        contentContainerStyle={styles.contentContainer}
-        style={styles.container}>
-        {withTopBar && (
-          <TopBar backgroundColor={topBarBackgroundColor} goBack={goBack} />
-        )}
-        {children}
-      </KeyboardAwareScrollView>
-    );
+  const ViewContainer = scrollable ? KeyboardAwareScrollView : RNView;
 
   return (
     <RNView style={styles.container}>
       {withTopBar && (
-        <TopBar backgroundColor={topBarBackgroundColor} goBack={goBack} />
+        <TopBar
+          goBack={goBack}
+          style={{
+            backgroundColor: topBarBackgroundColor,
+            padding: 'medium',
+          }}
+        />
       )}
-      {children}
+      <ViewContainer
+        enableOnAndroid
+        contentContainerStyle={styles.contentContainer}
+        extraHeight={100}
+        keyboardOpeningTime={0}
+        style={styles.viewContainer}>
+        {children}
+      </ViewContainer>
     </RNView>
   );
 };

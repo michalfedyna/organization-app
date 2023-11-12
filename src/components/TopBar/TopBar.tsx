@@ -1,23 +1,25 @@
 import React from 'react';
-import {BackgroundProps, FunctionComponent, SpacingProps} from '@types';
+
 import {Button, Row} from '@components';
+import {BackgroundProps, FunctionComponent, SpacingProps} from '@types';
 
-type TopBarProps = SpacingProps &
-  BackgroundProps & {
-    goBack?: () => void;
-  };
+type TopBarStyleProps = SpacingProps & BackgroundProps;
 
-const TopBar: FunctionComponent<TopBarProps> = ({goBack, ...props}) => {
+type TopBarProps = {
+  goBack?: () => void;
+  style?: TopBarStyleProps;
+};
+
+const TopBar: FunctionComponent<TopBarProps> = ({goBack, style = {}}) => {
   return (
-    <Row {...props}>
+    <Row style={style}>
       {goBack && (
         <Button
           icon="ArrowLeft"
           iconPosition="leading"
-          fontSize="medium"
-          padding="medium"
-          onPress={goBack}
+          style={{fontSize: 'medium'}}
           withTranslation="button.goBack"
+          onPress={goBack}
         />
       )}
     </Row>

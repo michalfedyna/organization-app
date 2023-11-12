@@ -1,8 +1,7 @@
+import AppMain from './AppMain';
 import AppRoot from './AppRoot';
 import React from 'react';
 
-import {DeveloperNavigation, useDeveloperMode} from '@developer';
-import {Navigation} from '@navigation';
 import {Logger} from '@utils';
 
 if (__DEV__) {
@@ -10,11 +9,9 @@ if (__DEV__) {
 }
 
 const App = () => {
-  const isDeveloperMode = useDeveloperMode();
-
   return (
     <AppRoot>
-      {isDeveloperMode ? <DeveloperNavigation /> : <Navigation />}
+      <AppMain />
     </AppRoot>
   );
 };

@@ -1,8 +1,8 @@
+import LoginScreen from './LoginScreen';
 import React from 'react';
-import {test, expect} from '@jest/globals';
 import renderer from 'react-test-renderer';
 
-import LoginScreen from './LoginScreen';
+import {expect, test} from '@jest/globals';
 
 test('LoginScreen renders correctly', () => {
   const tree = renderer.create(<LoginScreen />).toJSON();

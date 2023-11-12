@@ -20,25 +20,29 @@ import type {
   ViewProps,
 } from '@types';
 
-type ContainerProps = SpacingProps &
+type ContainerStyleProps = SpacingProps &
   AlignProps &
   BackgroundProps &
   ViewProps &
   SizeProps &
-  BorderProps & {};
+  BorderProps;
+
+type ContainerProps = {
+  style?: ContainerStyleProps;
+};
 
 const Container: FunctionComponentWithChildren<ContainerProps> = ({
   children,
-  ...props
+  style = {},
 }) => {
   const styles = useStyles(theme => ({
     container: {
-      ...getAlign(props),
-      ...getBackground(props, theme.colors),
-      ...getBorder(props, theme.colors),
-      ...getSize(props),
-      ...getSpacing(props, theme.spacing),
-      ...getView(props, theme.spacing),
+      ...getAlign(style),
+      ...getBackground(style, theme.colors),
+      ...getBorder(style, theme.colors),
+      ...getSize(style),
+      ...getSpacing(style, theme.spacing),
+      ...getView(style, theme.spacing),
     },
   }));
 

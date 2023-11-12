@@ -12,27 +12,26 @@ import type {
   TranslationProps,
 } from '@types';
 
-type ButtonProps = FontProps &
-  SpacingProps &
-  AlignProps &
-  BackgroundProps &
-  TranslationProps & {
-    onPress?: () => void;
-    isDisabled?: boolean;
-    icon?: IconNames;
-    iconPosition?: 'trailing' | 'leading';
-  };
+type ButtonStyleProps = FontProps & SpacingProps & AlignProps & BackgroundProps;
+
+type ButtonProps = TranslationProps & {
+  icon?: IconNames;
+  iconPosition?: 'trailing' | 'leading';
+  isDisabled?: boolean;
+  onPress?: () => void;
+  style?: ButtonStyleProps;
+};
 
 const Button: FunctionComponentWithChildren<ButtonProps> = ({
   children,
-  onPress,
-  isDisabled,
-  withTranslation,
   icon,
   iconPosition,
-  ...props
+  isDisabled,
+  onPress,
+  style = {},
+  withTranslation,
 }) => {
-  const {fontColor, fontSize, fontWeight} = props;
+  const {fontColor, fontSize, fontWeight} = style;
   const {
     padding,
     paddingHorizontal,
@@ -41,51 +40,51 @@ const Button: FunctionComponentWithChildren<ButtonProps> = ({
     paddingBottom,
     paddingLeft,
     paddingRight,
-  } = props;
+  } = style;
 
   const styles = useStyles(theme => ({
     button: {
-      ...getAlign(props),
-      ...getBackground(props, theme.colors),
-      ...getFont(props, theme.font, theme.colors),
-      ...getMargin(props, theme.spacing),
+      ...getAlign(style),
+      ...getBackground(style, theme.colors),
+      ...getFont(style, theme.font, theme.colors),
+      ...getMargin(style, theme.spacing),
     },
   }));
 
   return (
     <Touchable isDisabled={isDisabled} style={styles.button} onPress={onPress}>
       <Container
-        direction="row"
-        padding={padding}
-        paddingBottom={paddingBottom}
-        paddingHorizontal={paddingHorizontal}
-        paddingLeft={paddingLeft}
-        paddingRight={paddingRight}
-        paddingTop={paddingTop}
-        paddingVertical={paddingVertical}>
+        style={{
+          direction: 'row',
+          padding,
+          paddingBottom,
+          paddingHorizontal,
+          paddingLeft,
+          paddingRight,
+          paddingTop,
+          paddingVertical,
+        }}>
         {icon && iconPosition === 'leading' && (
           <Icon
-            color={props.fontColor}
-            marginRight="small"
+            color={fontColor}
             name={icon}
-            size={props.fontSize}
+            size={fontSize}
+            style={{marginRight: 'small'}}
           />
         )}
         {(withTranslation || children) && (
           <Text
-            fontColor={fontColor}
-            fontSize={fontSize}
-            fontWeight={fontWeight}
+            style={{fontColor, fontSize, fontWeight}}
             withTranslation={withTranslation}>
             {children}
           </Text>
         )}
         {icon && iconPosition === 'trailing' && (
           <Icon
-            color={props.fontColor}
-            marginLeft="small"
+            color={fontColor}
             name={icon}
-            size={props.fontSize}
+            size={fontSize}
+            style={{marginLeft: 'small'}}
           />
         )}
       </Container>

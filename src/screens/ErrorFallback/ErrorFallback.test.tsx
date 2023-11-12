@@ -1,8 +1,8 @@
+import ErrorFallbackScreen from './ErrorFallbackScreen';
 import React from 'react';
-import {test, expect} from '@jest/globals';
 import renderer from 'react-test-renderer';
 
-import ErrorFallbackScreen from './ErrorFallbackScreen';
+import {expect, test} from '@jest/globals';
 
 test('ErrorFallbackScreen renders correctly', () => {
   const tree = renderer.create(<ErrorFallbackScreen />).toJSON();

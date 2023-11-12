@@ -9,14 +9,21 @@ import {
   ViewProps,
 } from '@types';
 
-type RowProps = SpacingProps & ViewProps & BackgroundProps & {};
+type RowStyleProps = SpacingProps & BackgroundProps & ViewProps;
 
-const Row: FunctionComponentWithChildren<RowProps> = ({children, ...props}) => {
+type RowProps = {
+  style?: RowStyleProps;
+};
+
+const Row: FunctionComponentWithChildren<RowProps> = ({
+  children,
+  style = {},
+}) => {
   const styles = useStyles(theme => ({
     row: {
-      ...getBackground(props, theme.colors),
-      ...getSpacing(props, theme.spacing),
-      ...getView(props, theme.spacing),
+      ...getBackground(style, theme.colors),
+      ...getSpacing(style, theme.spacing),
+      ...getView(style, theme.spacing),
       flexDirection: 'row',
     },
   }));

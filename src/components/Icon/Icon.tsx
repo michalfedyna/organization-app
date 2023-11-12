@@ -2,30 +2,37 @@ import React from 'react';
 import {View as RNView} from 'react-native';
 
 import {
+  KeyofColorTheme,
+  KeyofFontSizeTheme,
   getAlign,
   getIconProps,
   getSpacing,
   useStyles,
   useTheme,
-  KeyofColorTheme,
-  KeyofFontSizeTheme,
 } from '@styles';
-import type {AlignProps, FunctionComponent, SpacingProps} from '@types';
 import {IconNames, Icons} from '@svg';
+import type {AlignProps, FunctionComponent, SpacingProps} from '@types';
 
-type IconProps = SpacingProps &
-  AlignProps & {
-    name: IconNames;
-    color?: KeyofColorTheme;
-    size?: KeyofFontSizeTheme;
-  };
+type IconStyleProps = SpacingProps & AlignProps;
 
-const Icon: FunctionComponent<IconProps> = ({name, color, size, ...props}) => {
+type IconProps = {
+  color?: KeyofColorTheme;
+  name: IconNames;
+  size?: KeyofFontSizeTheme;
+  style?: IconStyleProps;
+};
+
+const Icon: FunctionComponent<IconProps> = ({
+  color,
+  name,
+  size,
+  style = {},
+}) => {
   const {colors, font} = useTheme();
   const styles = useStyles(theme => ({
     icon: {
-      ...getSpacing(props, theme.spacing),
-      ...getAlign(props),
+      ...getAlign(style),
+      ...getSpacing(style, theme.spacing),
     },
   }));
 

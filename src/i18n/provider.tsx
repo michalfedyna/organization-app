@@ -1,8 +1,7 @@
-import React, {createContext, useEffect, useReducer} from 'react';
-import {Translation} from './translations/types';
-
 import en_US from './translations/en_US';
 import pl_PL from './translations/pl_PL';
+import {Translation} from './translations/types';
+import React, {createContext, useEffect, useReducer} from 'react';
 
 type AvailableTranslations = 'en_US' | 'pl_PL';
 

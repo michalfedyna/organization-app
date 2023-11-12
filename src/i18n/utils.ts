@@ -1,6 +1,5 @@
-import {useCallback, useContext} from 'react';
-
 import {TranslationContext} from './provider';
+import {useCallback, useContext} from 'react';
 
 export const useTranslation = () => {
   const translation = useContext(TranslationContext);

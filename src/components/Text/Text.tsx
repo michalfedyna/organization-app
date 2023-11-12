@@ -12,24 +12,22 @@ import type {
   TranslationProps,
 } from '@types';
 
-type TextProps = TranslationProps &
-  FontProps &
-  SpacingProps &
-  AlignProps &
-  SizeProps & {};
+type TextStyleProps = FontProps & SpacingProps & AlignProps & SizeProps;
+
+type TextProps = TranslationProps & {style?: TextStyleProps};
 
 const Text: FunctionComponentWithChildren<TextProps> = ({
   children,
   withTranslation,
-  ...props
+  style = {},
 }) => {
   const translation = useTranslation();
   const styles = useStyles(theme => ({
     text: {
-      ...getAlign(props),
-      ...getFont(props, theme.font, theme.colors),
-      ...getSize(props),
-      ...getSpacing(props, theme.spacing),
+      ...getAlign(style),
+      ...getFont(style, theme.font, theme.colors),
+      ...getSize(style),
+      ...getSpacing(style, theme.spacing),
       includeFontPadding: false,
     },
   }));

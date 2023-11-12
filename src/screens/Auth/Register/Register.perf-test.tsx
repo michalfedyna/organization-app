@@ -1,8 +1,8 @@
+import RegisterScreen from './RegisterScreen';
 import React from 'react';
-import {test} from '@jest/globals';
 import {measurePerformance} from 'reassure';
 
-import RegisterScreen from './RegisterScreen';
+import {test} from '@jest/globals';
 
 test('RegisterScreen performance test', async () => {
   await measurePerformance(<RegisterScreen />);

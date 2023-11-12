@@ -1,6 +1,6 @@
 import React from 'react';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {HomeScreen, ToolsScreen} from '@screens';
 
 type MainStackParamList = {
@@ -13,8 +13,8 @@ const Tab = createBottomTabNavigator<MainStackParamList>();
 const MainStack = () => {
   return (
     <Tab.Navigator initialRouteName="Home">
-      <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Tools" component={ToolsScreen} />
+      <Tab.Screen component={HomeScreen} name="Home" />
+      <Tab.Screen component={ToolsScreen} name="Tools" />
     </Tab.Navigator>
   );
 };

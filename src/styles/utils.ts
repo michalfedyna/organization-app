@@ -206,9 +206,9 @@ export const getFont = (
 ): FontStyle => {
   let font: FontStyle = {
     color: colorTheme.text,
-    fontFamily: Platform.OS === 'ios' ? fontTheme.family : 'Poppins-Regular',
+    fontFamily: Platform.OS === 'ios' ? fontTheme.family : 'Poppins-Light',
     fontSize: fontTheme.size.medium,
-    fontWeight: fontTheme.weight.regular,
+    fontWeight: fontTheme.weight.light,
   };
 
   if (args.textAlign) font.textAlign = args.textAlign;

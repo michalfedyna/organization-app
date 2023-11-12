@@ -1,9 +1,9 @@
 import React from 'react';
 import {Provider as StoreProvider} from 'react-redux';
 
-import {ThemeProvider} from '@styles';
 import {TranslationProvider} from '@i18n';
 import {store} from '@store';
+import {ThemeProvider} from '@styles';
 
 type ProvidersProps = React.PropsWithChildren & {};
 

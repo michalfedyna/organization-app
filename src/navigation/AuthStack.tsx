@@ -1,10 +1,10 @@
 import React from 'react';
-import {
-  createNativeStackNavigator,
-  NativeStackNavigationProp,
-} from '@react-navigation/native-stack';
 
-import {WelcomeScreen, LoginScreen, RegisterScreen} from '@screens';
+import {
+  NativeStackNavigationProp,
+  createNativeStackNavigator,
+} from '@react-navigation/native-stack';
+import {LoginScreen, RegisterScreen, WelcomeScreen} from '@screens';
 
 type AuthStackParamList = {
   Welcome: undefined;
@@ -35,22 +35,22 @@ const AuthStack = () => {
       initialRouteName="Welcome"
       screenOptions={{headerShown: false}}>
       <Stack.Screen
-        name="Welcome"
         component={WelcomeScreen}
+        name="Welcome"
         options={{
           title: 'Welcome',
         }}
       />
       <Stack.Screen
-        name="Login"
         component={LoginScreen}
+        name="Login"
         options={{
           title: 'Login',
         }}
       />
       <Stack.Screen
-        name="Register"
         component={RegisterScreen}
+        name="Register"
         options={{
           title: 'Register',
         }}

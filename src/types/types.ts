@@ -1,5 +1,4 @@
 import type {FC, PropsWithChildren} from 'react';
-import {TextStyle} from 'react-native';
 
 import {TranslationKey} from '@i18n';
 import {

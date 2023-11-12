@@ -1,15 +1,15 @@
 import React, {FC, PropsWithChildren} from 'react';
 import {
-  StyleProp,
   TouchableOpacity as RNTouchableOpacity,
+  StyleProp,
   ViewStyle,
 } from 'react-native';
 
 type TouchableProps = PropsWithChildren<{
-  style?: StyleProp<ViewStyle>;
   isDisabled?: boolean;
-  onPress?: () => void;
   onLongPress?: () => void;
+  onPress?: () => void;
+  style?: StyleProp<ViewStyle>;
 }>;
 
 const Touchable: FC<TouchableProps> = ({
@@ -21,10 +21,10 @@ const Touchable: FC<TouchableProps> = ({
 }) => {
   return (
     <RNTouchableOpacity
-      style={style}
       disabled={isDisabled}
-      onPress={onPress}
-      onLongPress={onLongPress}>
+      style={style}
+      onLongPress={onLongPress}
+      onPress={onPress}>
       {children}
     </RNTouchableOpacity>
   );

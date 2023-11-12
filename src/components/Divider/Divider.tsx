@@ -1,30 +1,37 @@
 import React, {FunctionComponent} from 'react';
 
 import {Container, Row, Text} from '@components';
+import {KeyofColorTheme} from '@styles';
 import {FontProps, SpacingProps, TranslationProps} from '@types';
 
-type DividerProps = FontProps & SpacingProps & TranslationProps & {};
+type DividerStyleProps = FontProps & SpacingProps;
+
+type DividerProps = TranslationProps & {
+  style?: DividerStyleProps;
+};
 
 const Divider: FunctionComponent<DividerProps> = ({
   withTranslation,
-  fontColor,
-  fontWeight,
-  fontSize,
-  ...props
+  style = {},
 }) => {
+  const {fontColor, fontSize, fontWeight} = style;
+
+  const dividerHalfStyle = {
+    flex: 1,
+    borderBottomWidth: 2,
+    borderColor: 'border' as KeyofColorTheme,
+  };
+
   return (
-    <Row {...props}>
-      <Container flex borderBottomWidth={2} borderColor="border" />
+    <Row style={style}>
+      <Container style={dividerHalfStyle} />
       {withTranslation && (
         <Text
-          fontColor={fontColor}
-          fontSize={fontSize}
-          fontWeight={fontWeight}
-          paddingHorizontal="medium"
+          style={{fontColor, fontSize, fontWeight, paddingHorizontal: 'medium'}}
           withTranslation={withTranslation}
         />
       )}
-      <Container flex borderBottomWidth={2} borderColor="border" />
+      <Container style={dividerHalfStyle} />
     </Row>
   );
 };

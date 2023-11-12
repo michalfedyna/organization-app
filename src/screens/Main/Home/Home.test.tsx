@@ -1,8 +1,8 @@
+import HomeScreen from './HomeScreen';
 import React from 'react';
-import {test, expect} from '@jest/globals';
 import renderer from 'react-test-renderer';
 
-import HomeScreen from './HomeScreen';
+import {expect, test} from '@jest/globals';
 
 test('HomeScreen renders correctly', () => {
   const tree = renderer.create(<HomeScreen />).toJSON();

@@ -9,17 +9,21 @@ import {
   ViewProps,
 } from '@types';
 
-type ColumnProps = SpacingProps & ViewProps & BackgroundProps & {};
+type ColumnStyleProps = SpacingProps & BackgroundProps & ViewProps;
+
+type ColumnProps = {
+  style?: ColumnStyleProps;
+};
 
 const Column: FunctionComponentWithChildren<ColumnProps> = ({
   children,
-  ...props
+  style = {},
 }) => {
   const styles = useStyles(theme => ({
     column: {
-      ...getBackground(props, theme.colors),
-      ...getSpacing(props, theme.spacing),
-      ...getView(props, theme.spacing),
+      ...getBackground(style, theme.colors),
+      ...getSpacing(style, theme.spacing),
+      ...getView(style, theme.spacing),
       flexDirection: 'column',
     },
   }));
