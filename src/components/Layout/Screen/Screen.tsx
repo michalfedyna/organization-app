@@ -4,7 +4,7 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 import {TopBar} from '@components';
-import {KeyofColorTheme, getSpacing, useStyles} from '@styles';
+import {KeyofColorTheme, useStyles} from '@styles';
 import {FunctionComponentWithChildren} from '@types';
 
 type ScreenProps = {
@@ -33,7 +33,7 @@ const Screen: FunctionComponentWithChildren<ScreenProps> = ({
     },
     viewContainer: {
       flex: 1,
-      ...getSpacing({paddingHorizontal: 'medium'}, theme.spacing),
+      paddingHorizontal: theme.spacing.medium,
     },
     contentContainer: {
       flex: 1,

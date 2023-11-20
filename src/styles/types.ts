@@ -1,4 +1,4 @@
-import {FlexStyle, TextStyle} from 'react-native';
+import {ImageStyle, TextStyle, ViewStyle} from 'react-native';
 
 export type FontWeight =
   | '100'
@@ -13,7 +13,7 @@ export type FontWeight =
   | 'bold'
   | 'normal';
 
-export type FontTheme = {
+export interface FontTheme {
   family: string;
   size: {
     small: number;
@@ -27,56 +27,41 @@ export type FontTheme = {
     medium: FontWeight;
     bold: FontWeight;
   };
-};
+}
 
-export type SpacingTheme = {
+export interface SpacingTheme {
   none: number;
   small: number;
   medium: number;
   large: number;
-};
+}
 
-export type ColorTheme = {
-  text: string;
-  textInverted: string;
+export interface ColorTheme {
   background: string;
   foreground: string;
+  border: string;
+  text: string;
+  textInverted: string;
   primary: string;
   secondary: string;
   accent: string;
-  border: string;
-  facebook: string;
-  google: string;
-  apple: string;
-};
-
-// TODO change colors structure
-
-export type BackgroundColorTheme = {
-  background: string;
-  foreground: string;
-};
-
-export type TextColorTheme = {
-  onLightBackground: string;
-  onDarkBackground: string;
-};
-
-export type AccentColorTheme = {
   attention: string; // call to action
   toned: string; // grey
   success: string; // green
   warning: string; // yellow
   error: string; // red
   info: string; // blue
-};
+  facebook: string;
+  google: string;
+  apple: string;
+}
 
-export type Theme = {
+export interface Theme {
   isDark: boolean;
   font: FontTheme;
   spacing: SpacingTheme;
   colors: ColorTheme;
-};
+}
 
 export type KeyofFontSizeTheme = keyof FontTheme['size'];
 
@@ -86,71 +71,8 @@ export type KeyofSpacingTheme = keyof SpacingTheme;
 
 export type KeyofColorTheme = keyof ColorTheme;
 
-// Style Types
+export type ThemedViewStyle = ViewStyle | ((theme: Theme) => ViewStyle);
 
-export type MarginStyle = Pick<
-  FlexStyle,
-  | 'margin'
-  | 'marginHorizontal'
-  | 'marginVertical'
-  | 'marginTop'
-  | 'marginBottom'
-  | 'marginLeft'
-  | 'marginRight'
->;
+export type ThemedTextStyle = TextStyle | ((theme: Theme) => TextStyle);
 
-export type PaddingStyle = Pick<
-  FlexStyle,
-  | 'padding'
-  | 'paddingHorizontal'
-  | 'paddingVertical'
-  | 'paddingTop'
-  | 'paddingBottom'
-  | 'paddingLeft'
-  | 'paddingRight'
->;
-
-export type SpacingStyle = MarginStyle & PaddingStyle;
-
-export type AlignStyle = Pick<FlexStyle, 'alignSelf'>;
-
-export type FontStyle = Pick<
-  TextStyle,
-  | 'color'
-  | 'fontFamily'
-  | 'fontSize'
-  | 'fontWeight'
-  | 'lineHeight'
-  | 'textAlign'
->;
-
-export type ViewStyle = Pick<
-  FlexStyle,
-  | 'columnGap'
-  | 'flex'
-  | 'flexDirection'
-  | 'flexWrap'
-  | 'gap'
-  | 'justifyContent'
-  | 'overflow'
-  | 'rowGap'
->;
-
-export type BackgroundStyle = {backgroundColor?: string};
-
-export type SizeStyle = Pick<
-  FlexStyle,
-  'width' | 'minWidth' | 'maxWidth' | 'height' | 'minHeight' | 'maxHeight'
->;
-
-export type BorderStyle = Pick<
-  FlexStyle,
-  | 'borderWidth'
-  | 'borderTopWidth'
-  | 'borderRightWidth'
-  | 'borderBottomWidth'
-  | 'borderLeftWidth'
-> & {
-  borderColor?: string;
-  borderRadius?: number;
-};
+export type ThemedImageStyle = ImageStyle | ((theme: Theme) => ImageStyle);

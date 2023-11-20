@@ -1,25 +1,46 @@
 import React from 'react';
+import {TextStyle, ViewStyle} from 'react-native';
 
-import {Container, Icon, Text, Touchable} from '@components';
-import {getAlign, getBackground, getFont, getMargin, useStyles} from '@styles';
+import {Icon, Row, Text, Touchable} from '@components';
+import {
+  Theme,
+  ThemedTextStyle,
+  ThemedViewStyle,
+  getFont,
+  getStyle,
+  useStyles,
+} from '@styles';
 import {IconNames} from '@svg';
-import type {
-  AlignProps,
-  BackgroundProps,
-  FontProps,
-  FunctionComponentWithChildren,
-  SpacingProps,
-  TranslationProps,
-} from '@types';
+import type {FunctionComponentWithChildren, TranslationProps} from '@types';
 
-type ButtonStyleProps = FontProps & SpacingProps & AlignProps & BackgroundProps;
+enum Variants {
+  Primary = 'primary',
+  PrimarySmall = 'primarySmall',
+  PrimaryLarge = 'primaryLarge',
+  Secondary = 'secondary',
+  SecondarySmall = 'secondarySmall',
+  SecondaryLarge = 'secondaryLarge',
+}
+
+const getVariantStyle = (variant: Variants, theme: Theme) => {
+  switch (variant) {
+    case Variants.Primary: {
+      return {};
+    }
+    case Variants.Secondary: {
+      return {};
+    }
+  }
+};
 
 type ButtonProps = TranslationProps & {
   icon?: IconNames;
   iconPosition?: 'trailing' | 'leading';
   isDisabled?: boolean;
   onPress?: () => void;
-  style?: ButtonStyleProps;
+  style?: ThemedViewStyle;
+  textStyle?: ThemedTextStyle;
+  containerStyle?: ThemedViewStyle;
 };
 
 const Button: FunctionComponentWithChildren<ButtonProps> = ({
@@ -29,53 +50,41 @@ const Button: FunctionComponentWithChildren<ButtonProps> = ({
   isDisabled,
   onPress,
   style = {},
+  textStyle = {},
+  containerStyle = {},
   withTranslation,
 }) => {
-  const {fontColor, fontSize, fontWeight} = style;
-  const {
-    padding,
-    paddingHorizontal,
-    paddingVertical,
-    paddingTop,
-    paddingBottom,
-    paddingLeft,
-    paddingRight,
-  } = style;
-
   const styles = useStyles(theme => ({
     button: {
-      ...getAlign(style),
-      ...getBackground(style, theme.colors),
-      ...getFont(style, theme.font, theme.colors),
-      ...getMargin(style, theme.spacing),
+      ...getStyle(style, theme),
+    },
+    text: {
+      ...getStyle(textStyle, theme),
+    },
+    container: {
+      ...getStyle(containerStyle, theme),
+    },
+    iconLeading: {
+      marginRight: theme.spacing.small,
+    },
+    iconTrailing: {
+      marginLeft: theme.spacing.small,
     },
   }));
 
   return (
     <Touchable isDisabled={isDisabled} style={styles.button} onPress={onPress}>
-      <Container
-        style={{
-          direction: 'row',
-          padding,
-          paddingBottom,
-          paddingHorizontal,
-          paddingLeft,
-          paddingRight,
-          paddingTop,
-          paddingVertical,
-        }}>
+      <Row style={{}}>
         {icon && iconPosition === 'leading' && (
           <Icon
             color={fontColor}
             name={icon}
             size={fontSize}
-            style={{marginRight: 'small'}}
+            style={styles.iconLeading}
           />
         )}
         {(withTranslation || children) && (
-          <Text
-            style={{fontColor, fontSize, fontWeight}}
-            withTranslation={withTranslation}>
+          <Text style={styles.text} withTranslation={withTranslation}>
             {children}
           </Text>
         )}
@@ -84,10 +93,10 @@ const Button: FunctionComponentWithChildren<ButtonProps> = ({
             color={fontColor}
             name={icon}
             size={fontSize}
-            style={{marginLeft: 'small'}}
+            style={styles.iconTrailing}
           />
         )}
-      </Container>
+      </Row>
     </Touchable>
   );
 };

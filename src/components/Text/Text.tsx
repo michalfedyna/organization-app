@@ -1,34 +1,24 @@
+import {TextProps, getColorStyle, getVariantStyle} from './utils';
 import React from 'react';
 import {Text as RNText} from 'react-native';
 
 import {useTranslation} from '@i18n';
-import {getAlign, getFont, getSize, getSpacing, useStyles} from '@styles';
-import type {
-  AlignProps,
-  FontProps,
-  FunctionComponentWithChildren,
-  SizeProps,
-  SpacingProps,
-  TranslationProps,
-} from '@types';
-
-type TextStyleProps = FontProps & SpacingProps & AlignProps & SizeProps;
-
-type TextProps = TranslationProps & {style?: TextStyleProps};
+import {getStyle, useStyles} from '@styles';
+import type {FunctionComponentWithChildren} from '@types';
 
 const Text: FunctionComponentWithChildren<TextProps> = ({
   children,
-  withTranslation,
+  color,
   style = {},
+  variant,
+  withTranslation,
 }) => {
   const translation = useTranslation();
   const styles = useStyles(theme => ({
     text: {
-      ...getAlign(style),
-      ...getFont(style, theme.font, theme.colors),
-      ...getSize(style),
-      ...getSpacing(style, theme.spacing),
-      includeFontPadding: false,
+      ...getVariantStyle(theme, variant),
+      ...getColorStyle(theme, color),
+      ...getStyle(theme, style),
     },
   }));
 

@@ -1,25 +1,15 @@
 import React from 'react';
 import {View as RNView} from 'react-native';
 
-import {
-  KeyofColorTheme,
-  KeyofFontSizeTheme,
-  getAlign,
-  getIconProps,
-  getSpacing,
-  useStyles,
-  useTheme,
-} from '@styles';
+import {ThemedViewStyle, useStyles} from '@styles';
 import {IconNames, Icons} from '@svg';
-import type {AlignProps, FunctionComponent, SpacingProps} from '@types';
-
-type IconStyleProps = SpacingProps & AlignProps;
+import type {FunctionComponent} from '@types';
 
 type IconProps = {
-  color?: KeyofColorTheme;
+  color: string;
   name: IconNames;
-  size?: KeyofFontSizeTheme;
-  style?: IconStyleProps;
+  size: number;
+  style?: ThemedViewStyle;
 };
 
 const Icon: FunctionComponent<IconProps> = ({
@@ -28,11 +18,9 @@ const Icon: FunctionComponent<IconProps> = ({
   size,
   style = {},
 }) => {
-  const {colors, font} = useTheme();
   const styles = useStyles(theme => ({
     icon: {
-      ...getAlign(style),
-      ...getSpacing(style, theme.spacing),
+      ...(typeof style === 'function' ? style(theme) : style),
     },
   }));
 
@@ -40,7 +28,7 @@ const Icon: FunctionComponent<IconProps> = ({
 
   return (
     <RNView style={styles.icon}>
-      <IconComponent {...getIconProps({color, size}, colors, font)} />
+      <IconComponent color={color} size={size} />
     </RNView>
   );
 };

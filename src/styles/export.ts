@@ -1,19 +1,4 @@
-export {
-  useStyles,
-  useNavigationTheme,
-  createStyles,
-  setTheme,
-  getSpacing,
-  getPadding,
-  getMargin,
-  getAlign,
-  getView,
-  getFont,
-  getBackground,
-  getSize,
-  getBorder,
-  getIconProps,
-} from './utils';
+export {useStyles, useNavigationTheme, setTheme} from './utils';
 
 export {ThemeProvider, useTheme} from './provider';
 
@@ -27,13 +12,9 @@ export type {
   SpacingTheme,
   ColorTheme,
   Theme,
-  SpacingStyle,
-  MarginStyle,
-  PaddingStyle,
-  AlignStyle,
-  FontStyle,
-  ViewStyle,
-  BackgroundStyle,
-  SizeStyle,
-  BorderStyle,
+  ThemedImageStyle,
+  ThemedTextStyle,
+  ThemedViewStyle,
 } from './types';
+
+export {getFont, getStyle} from './mixins';
