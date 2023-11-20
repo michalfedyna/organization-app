@@ -4,6 +4,7 @@ module.exports = {
   extends: '@react-native',
   rules: {
     curly: 'off',
+    'react-native/no-inline-styles': 'off',
     'react/jsx-sort-props': [
       'error',
       {

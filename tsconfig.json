@@ -35,6 +35,9 @@
       ],
       "@types": [
         "types/export"
+      ],
+      "@views": [
+        "views/export"
       ]
     }
   }
