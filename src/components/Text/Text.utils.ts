@@ -1,25 +1,7 @@
+import {Colors, Variants} from './Text.types';
 import {TextStyle} from 'react-native';
 
-import {Theme, ThemedTextStyle, getFont} from '@styles';
-import {TranslationProps} from '@types';
-
-export enum Variants {
-  Header = 'header',
-  Paragraph = 'paragraph',
-  Jumbo = 'jumbo',
-  Body = 'body',
-}
-
-export enum Colors {
-  standard = 'standard',
-  inverted = 'inverted',
-}
-
-export type TextProps = TranslationProps & {
-  style?: ThemedTextStyle;
-  variant?: Variants;
-  color?: Colors;
-};
+import {Theme, getFont} from '@styles';
 
 export const getVariantStyle = (
   theme: Theme,
@@ -44,6 +26,11 @@ export const getVariantStyle = (
     default:
     case Variants.Body: {
       const style: TextStyle = getFont({weight: 'light', size: 'medium'});
+      style.color = theme.colors.text;
+      return style;
+    }
+    case Variants.Button: {
+      const style: TextStyle = getFont({weight: 'medium', size: 'medium'});
       style.color = theme.colors.text;
       return style;
     }

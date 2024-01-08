@@ -4,7 +4,7 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 import {TopBar} from '@components';
-import {KeyofColorTheme, useStyles} from '@styles';
+import {KeyofColorTheme, ThemedViewStyle, useStyles} from '@styles';
 import {FunctionComponentWithChildren} from '@types';
 
 type ScreenProps = {
@@ -40,19 +40,16 @@ const Screen: FunctionComponentWithChildren<ScreenProps> = ({
     },
   }));
 
+  const topBarStyle: ThemedViewStyle = theme => ({
+    backgroundColor: theme.colors[topBarBackgroundColor || 'primary'],
+    padding: theme.spacing.medium,
+  });
+
   const ViewContainer = scrollable ? KeyboardAwareScrollView : RNView;
 
   return (
     <RNView style={styles.container}>
-      {withTopBar && (
-        <TopBar
-          goBack={goBack}
-          style={{
-            backgroundColor: topBarBackgroundColor,
-            padding: 'medium',
-          }}
-        />
-      )}
+      {withTopBar && <TopBar goBack={goBack} style={topBarStyle} />}
       <ViewContainer
         enableOnAndroid
         contentContainerStyle={styles.contentContainer}

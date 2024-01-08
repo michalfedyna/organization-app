@@ -1,7 +1,7 @@
-export {default as UserData} from './UserData';
+export {default as User} from './user/User';
 
-export {registerSchema} from './yupSchemas';
-export type {RegisterFormSchema, RegisterForm} from './yupSchemas';
+export {registerSchema} from './validationSchemas';
+export type {RegisterFormSchema, RegisterForm} from './validationSchemas';
 
-export {loginSchema} from './yupSchemas';
-export type {LoginFormSchema, LoginForm} from './yupSchemas';
+export {loginSchema} from './validationSchemas';
+export type {LoginFormSchema, LoginForm} from './validationSchemas';

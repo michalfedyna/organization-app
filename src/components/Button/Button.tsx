@@ -1,103 +1,54 @@
+import ButtonIcon from './ButtonIcon';
+import ButtonWrapper from './ButtonWrapper';
+import type {ButtonProps} from './types';
+import {getButtonStyles} from './utils';
 import React from 'react';
-import {TextStyle, ViewStyle} from 'react-native';
 
-import {Icon, Row, Text, Touchable} from '@components';
-import {
-  Theme,
-  ThemedTextStyle,
-  ThemedViewStyle,
-  getFont,
-  getStyle,
-  useStyles,
-} from '@styles';
-import {IconNames} from '@svg';
-import type {FunctionComponentWithChildren, TranslationProps} from '@types';
+import {Row, Text, TextVariants, Touchable} from '@components';
+import {useStyles, useTheme} from '@styles';
+import type {FunctionComponent} from '@types';
 
-enum Variants {
-  Primary = 'primary',
-  PrimarySmall = 'primarySmall',
-  PrimaryLarge = 'primaryLarge',
-  Secondary = 'secondary',
-  SecondarySmall = 'secondarySmall',
-  SecondaryLarge = 'secondaryLarge',
-}
-
-const getVariantStyle = (variant: Variants, theme: Theme) => {
-  switch (variant) {
-    case Variants.Primary: {
-      return {};
-    }
-    case Variants.Secondary: {
-      return {};
-    }
-  }
-};
-
-type ButtonProps = TranslationProps & {
-  icon?: IconNames;
-  iconPosition?: 'trailing' | 'leading';
-  isDisabled?: boolean;
-  onPress?: () => void;
-  style?: ThemedViewStyle;
-  textStyle?: ThemedTextStyle;
-  containerStyle?: ThemedViewStyle;
-};
-
-const Button: FunctionComponentWithChildren<ButtonProps> = ({
-  children,
+const Button: FunctionComponent<ButtonProps> = ({
+  buttonColor,
+  disabled,
   icon,
   iconPosition,
-  isDisabled,
+  inline,
   onPress,
-  style = {},
-  textStyle = {},
-  containerStyle = {},
-  withTranslation,
+  size,
+  textColor,
+  translation,
+  variant,
 }) => {
-  const styles = useStyles(theme => ({
-    button: {
-      ...getStyle(style, theme),
+  const theme = useTheme();
+  const styles = useStyles({
+    touchable: {
+      justifyContent: 'center',
+      alignItems: 'center',
+      paddingVertical: theme.spacing.small,
+      paddingHorizontal: theme.spacing.medium,
     },
-    text: {
-      ...getStyle(textStyle, theme),
-    },
-    container: {
-      ...getStyle(containerStyle, theme),
-    },
-    iconLeading: {
-      marginRight: theme.spacing.small,
-    },
-    iconTrailing: {
-      marginLeft: theme.spacing.small,
-    },
-  }));
+  });
 
   return (
-    <Touchable isDisabled={isDisabled} style={styles.button} onPress={onPress}>
-      <Row style={{}}>
-        {icon && iconPosition === 'leading' && (
-          <Icon
-            color={fontColor}
-            name={icon}
-            size={fontSize}
-            style={styles.iconLeading}
+    <ButtonWrapper inline={inline}>
+      <Touchable disabled={disabled} style={styles.touchable} onPress={onPress}>
+        <Row
+          crossAxis="center"
+          mainAxis="center"
+          reverse={iconPosition === 'leading'}>
+          {translation && (
+            <Text translation={translation} variant={TextVariants.Button} />
+          )}
+          <ButtonIcon
+            color={theme.colors.text}
+            icon={icon}
+            iconPosition={iconPosition}
+            size={theme.font.size.jumbo}
           />
-        )}
-        {(withTranslation || children) && (
-          <Text style={styles.text} withTranslation={withTranslation}>
-            {children}
-          </Text>
-        )}
-        {icon && iconPosition === 'trailing' && (
-          <Icon
-            color={fontColor}
-            name={icon}
-            size={fontSize}
-            style={styles.iconTrailing}
-          />
-        )}
-      </Row>
-    </Touchable>
+        </Row>
+      </Touchable>
+    </ButtonWrapper>
   );
 };
 

@@ -1,37 +1,31 @@
 import React, {FunctionComponent} from 'react';
 
 import {Container, Row, Text} from '@components';
-import {KeyofColorTheme} from '@styles';
-import {FontProps, SpacingProps, TranslationProps} from '@types';
+import {useStyles} from '@styles';
+import {TranslationProps} from '@types';
 
-type DividerStyleProps = FontProps & SpacingProps;
+type DividerProps = TranslationProps & {};
 
-type DividerProps = TranslationProps & {
-  style?: DividerStyleProps;
-};
-
-const Divider: FunctionComponent<DividerProps> = ({
-  withTranslation,
-  style = {},
-}) => {
-  const {fontColor, fontSize, fontWeight} = style;
-
-  const dividerHalfStyle = {
-    flex: 1,
-    borderBottomWidth: 2,
-    borderColor: 'border' as KeyofColorTheme,
-  };
+const Divider: FunctionComponent<DividerProps> = ({translation}) => {
+  const styles = useStyles(theme => ({
+    dividerHalfStyle: {
+      borderBottomWidth: 2,
+      borderColor: theme.colors.border,
+      flex: 1,
+    },
+    divider: {
+      alignItems: 'center',
+    },
+    text: {
+      marginHorizontal: theme.spacing.medium,
+    },
+  }));
 
   return (
-    <Row style={style}>
-      <Container style={dividerHalfStyle} />
-      {withTranslation && (
-        <Text
-          style={{fontColor, fontSize, fontWeight, paddingHorizontal: 'medium'}}
-          withTranslation={withTranslation}
-        />
-      )}
-      <Container style={dividerHalfStyle} />
+    <Row style={styles.divider}>
+      <Container style={styles.dividerHalfStyle} />
+      {translation && <Text style={styles.text} translation={translation} />}
+      <Container style={styles.dividerHalfStyle} />
     </Row>
   );
 };

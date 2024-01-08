@@ -1,26 +1,28 @@
 import React from 'react';
 import {View as RNView} from 'react-native';
 
-import {ThemedViewStyle, useStyles} from '@styles';
+import {ThemedViewStyle, getStyle, useStyles} from '@styles';
 import {IconNames, Icons} from '@svg';
 import type {FunctionComponent} from '@types';
 
 type IconProps = {
-  color: string;
   name: IconNames;
-  size: number;
-  style?: ThemedViewStyle;
+  containerStyle?: ThemedViewStyle;
+  iconStyle: {
+    size: number;
+    color: string;
+  };
 };
 
 const Icon: FunctionComponent<IconProps> = ({
-  color,
   name,
-  size,
-  style = {},
+  containerStyle = {},
+  iconStyle: {size, color},
 }) => {
   const styles = useStyles(theme => ({
     icon: {
-      ...(typeof style === 'function' ? style(theme) : style),
+      ...getStyle(theme, containerStyle),
+      alignSelf: 'center',
     },
   }));
 

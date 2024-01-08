@@ -27,21 +27,22 @@ const translation = {
       confirmPassword: 'Confirm your password',
     },
   },
-  divider: {
-    useEmail: 'or your email',
-  },
-  WelcomeScreen: {
-    title: 'Welcome',
-    header: 'Welcome!',
-    paragraph: "Let's get started!",
-  },
-  LoginScreen: {
-    title: 'Login',
-    header: 'Login',
-  },
-  RegisterScreen: {
-    title: 'Register',
-    header: 'Register',
+  screen: {
+    welcome: {
+      title: 'Welcome',
+      header: 'Welcome!',
+      paragraph: "Let's get started!",
+      login: 'Login using you social media account',
+      divider: 'or your email',
+    },
+    login: {
+      title: 'Login',
+      header: 'Login',
+    },
+    register: {
+      title: 'Register',
+      header: 'Register',
+    },
   },
 };
 

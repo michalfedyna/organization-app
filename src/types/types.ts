@@ -9,7 +9,7 @@ export type FunctionComponentWithChildren<T = {}> = FC<PropsWithChildren<T>>;
 export type SVGComponent = FunctionComponent<SVGProps>;
 
 export type TranslationProps = {
-  withTranslation?: TranslationKey;
+  translation?: TranslationKey;
 };
 
 export type SVGProps = {

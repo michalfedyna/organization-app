@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 
 type TouchableProps = PropsWithChildren<{
-  isDisabled?: boolean;
+  disabled?: boolean;
   onLongPress?: () => void;
   onPress?: () => void;
   style?: StyleProp<ViewStyle>;
@@ -17,11 +17,11 @@ const Touchable: FC<TouchableProps> = ({
   style,
   onPress,
   onLongPress,
-  isDisabled,
+  disabled,
 }) => {
   return (
     <RNTouchableOpacity
-      disabled={isDisabled}
+      disabled={disabled}
       style={style}
       onLongPress={onLongPress}
       onPress={onPress}>

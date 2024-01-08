@@ -1,4 +1,5 @@
-import {TextProps, getColorStyle, getVariantStyle} from './utils';
+import type {TextProps} from './Text.types';
+import {getColorStyle, getVariantStyle} from './Text.utils';
 import React from 'react';
 import {Text as RNText} from 'react-native';
 
@@ -11,9 +12,9 @@ const Text: FunctionComponentWithChildren<TextProps> = ({
   color,
   style = {},
   variant,
-  withTranslation,
+  translation,
 }) => {
-  const translation = useTranslation();
+  const getTranslation = useTranslation();
   const styles = useStyles(theme => ({
     text: {
       ...getVariantStyle(theme, variant),
@@ -24,7 +25,7 @@ const Text: FunctionComponentWithChildren<TextProps> = ({
 
   return (
     <RNText style={styles.text}>
-      {withTranslation ? translation(withTranslation) : children}
+      {translation ? getTranslation(translation) : children}
     </RNText>
   );
 };

@@ -9,14 +9,14 @@ export function useStyles<T extends StyleSheet.NamedStyles<T>>(
     | StyleSheet.NamedStyles<T>
     | ((theme: Theme) => T)
     | ((theme: Theme) => StyleSheet.NamedStyles<T>),
-): T {
+): Readonly<T> {
   const theme = useTheme();
 
-  return useMemo(() => {
-    return StyleSheet.create(
-      typeof styles === 'function' ? styles(theme) : styles,
-    );
-  }, [styles, theme]);
+  return useMemo(
+    () =>
+      StyleSheet.create(typeof styles === 'function' ? styles(theme) : styles),
+    [styles, theme],
+  );
 }
 
 export const setTheme = (theme: 'dark' | 'light' | null) => {

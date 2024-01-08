@@ -1,7 +1,7 @@
 import React from 'react';
 import {ScrollView as RNScrollView} from 'react-native';
 
-import {ThemedViewStyle, useStyles} from '@styles';
+import {ThemedViewStyle, getStyle, useStyles} from '@styles';
 import type {FunctionComponentWithChildren} from '@types';
 
 type ScrollProps = {
@@ -11,15 +11,17 @@ type ScrollProps = {
 
 const Scroll: FunctionComponentWithChildren<ScrollProps> = ({
   children,
-  style,
+  style = {},
+  contentContainerStyle = {},
 }) => {
   const styles = useStyles(theme => ({
     scroll: {
       flex: 1,
-      ...(typeof style === 'function' ? style(theme) : style),
+      ...getStyle(theme, style),
     },
     scrollContentContainer: {
-      ...(typeof style === 'function' ? style(theme) : style),
+      flexGrow: 1,
+      ...getStyle(theme, contentContainerStyle),
     },
   }));
 

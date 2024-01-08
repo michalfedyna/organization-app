@@ -9,12 +9,12 @@ import {useNavigationTheme} from '@styles';
 type NavigationProps = {};
 
 const Navigation: React.FC<NavigationProps> = () => {
-  const isLoggedIn = useAppSelector(state => state.user.isLoggedIn);
+  const userStatus = useAppSelector(state => state.user.userStatus);
   const navigationTheme = useNavigationTheme();
 
   return (
     <NavigationContainer theme={navigationTheme}>
-      {isLoggedIn ? <MainStack /> : <AuthStack />}
+      {userStatus === 'loggedIn' ? <MainStack /> : <AuthStack />}
     </NavigationContainer>
   );
 };

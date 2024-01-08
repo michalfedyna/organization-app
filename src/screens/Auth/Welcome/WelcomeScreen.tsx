@@ -15,11 +15,17 @@ const WelcomeScreen = () => {
     navigation.navigate('Register');
   };
 
-  const onApplePress = () => {};
+  const onApplePress = () => {
+    // TODO: Implement Apple login
+  };
 
-  const onFacebookPress = () => {};
+  const onFacebookPress = () => {
+    // TODO: Implement Facebook login
+  };
 
-  const onGooglePress = () => {};
+  const onGooglePress = () => {
+    // TODO: Implement Google login
+  };
 
   return (
     <WelcomeView

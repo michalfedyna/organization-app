@@ -5,7 +5,7 @@ export {default as Row} from './Layout/Row/Row';
 export {default as Scroll} from './Layout/Scroll/Scroll';
 
 export {default as Text} from './Text/Text';
-export type {Variants as TextVariants} from './Text/utils';
+export {Variants as TextVariants} from './Text/Text.types';
 
 export {default as Button} from './Button/Button';
 export {default as Touchable} from './Touchable/Touchable';

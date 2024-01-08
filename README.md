@@ -10,6 +10,7 @@ Awesome **Organization App** created using [**React Native**](https://reactnativ
 * [Project Structure](#project-structure)
 * [Libraries](#libraries)
 * [Testing](#testing)
+* [TODO](#todo)
 * [Contributions](#contributions)
   * [Commits](#commits)
     * [Commit Message Structure](#commit-message-structure)
@@ -17,6 +18,8 @@ Awesome **Organization App** created using [**React Native**](https://reactnativ
     * [Specification](#specification)
 * [License](#license)
 <!-- TOC -->
+
+
 
 # Features
 
@@ -39,6 +42,9 @@ WIP
 - [**React Native Testing Library**](https://callstack.github.io/react-native-testing-library/)
 - [**Reassure**](https://callstack.github.io/reassure/)
 - [**Detox**](https://wix.github.io/Detox/)
+
+# TODO
+- Add fastlane for build automation
 
 # Contributions
 

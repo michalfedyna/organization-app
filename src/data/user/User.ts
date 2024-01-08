@@ -1,11 +1,11 @@
-class UserData {
-  private static instance: UserData | null = null;
+class User {
+  private static instance: User | null = null;
 
   private constructor() {}
 
   static getInstance() {
     if (!this.instance) {
-      this.instance = new UserData();
+      this.instance = new User();
     }
 
     return this.instance;
@@ -18,4 +18,4 @@ class UserData {
   logout() {}
 }
 
-export default UserData;
+export default User;
